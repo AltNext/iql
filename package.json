@@ -1,0 +1,36 @@
+{
+  "name": "pg-norm",
+  "version": "1.0.0",
+  "description": "PG-NOrm",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/altnext/pg-norm.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "tsc --build --clean",
+    "lint": "eslint --ext .ts . --cache",
+    "test": "jest --ci",
+    "type": "tsc --noEmit --noImplicitAny"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/pg": "^7.14.4",
+    "jest": "^26.0.1",
+    "pg": "^8.3.0",
+    "ts-jest": "26.1.0",
+    "typescript": "^3.9.5"
+  },
+  "author": "Altnext Gorillaz",
+  "license": "MIT",
+  "eslintIgnore": [
+    "dist",
+    "node_modules"
+  ]
+}
