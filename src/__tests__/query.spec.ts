@@ -49,7 +49,7 @@ describe('query', () => {
 
     const id = 'asdasda';
 
-    const queries = new Array(5).fill(0).map(() => findMe.compile({ id }));
+    const queries = Array.from({ length: 5 }, () => findMe.compile({ id }));
 
     for (const q of queries) {
       expect(q).toStrictEqual({
@@ -162,19 +162,19 @@ describe('query', () => {
 
     const result = { id: 'foobar' };
 
-    expect(findMeExtended.asId(result)).toEqual(result.id);
+    expect(findMeExtended.asId(result)).toStrictEqual(result.id);
   });
 
   it('query name', () => {
-    const findMe = query<object, { a: number[]; b: number[] }>`
+    const findMe = query<unknown, { a: number[]; b: number[] }>`
       SELECT * FROM public.foo
-        WHERE a in (${(agg, { a }) => agg.values(a)});
+        WHERE a in (${(agg, { a }) => agg.values(a)})
         AND b in (${(agg, { b }) => agg.values(b)});
     `;
 
     const queryA = findMe.compile({ a: [1], b: [1, 1] });
     const queryB = findMe.compile({ a: [1, 1], b: [1] });
 
-    expect(queryA.name).not.toEqual(queryB.name);
+    expect(queryA.name).not.toStrictEqual(queryB.name);
   });
 });

@@ -1,7 +1,7 @@
 {
   "name": "pg-norm",
-  "version": "1.0.0",
-  "description": "PG-NOrm",
+  "version": "0.0.0",
+  "description": "Postgres NOrm",
   "main": "./index.js",
   "types": "./index.d.ts",
   "files": [

@@ -22,24 +22,24 @@ export type QueryCompiler<
   compile(params: Params): QueryConfig<ValueType[]>;
 };
 
-export type QueryParameters<T> = T extends QueryCompiler<infer K, infer R>
+export type QueryParameters<T> = T extends QueryCompiler<unknown, infer R>
   ? R
-  : T extends BaseQuery<infer R, infer S>
+  : T extends BaseQuery<unknown, infer S>
   ? S
   : [];
 
-export type QueryResult<T> = T extends QueryCompiler<infer K, infer R>
+export type QueryResult<T> = T extends QueryCompiler<infer K, unknown>
   ? K
-  : T extends BaseQuery<infer R, infer S>
+  : T extends BaseQuery<infer R, unknown>
   ? R
   : unknown;
 
 export type BuilderInput<T> =
-  | keyof QueryParameters<T>
   | string
+  | keyof QueryParameters<T>
   | ((agg: IParamAggregator<T>, values: QueryParameters<T>) => string);
 
-export type ValueType = string | number | Date | null | object | ValueType[];
+export type ValueType = Date | ValueType[] | boolean | number | object | string | null;
 
 export interface IParamAggregator<T> {
   props: ValueType[];

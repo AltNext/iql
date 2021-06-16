@@ -2,7 +2,7 @@ import { createHash } from 'crypto';
 
 import type { BuilderInput, IParamAggregator, QueryCompiler, QueryParameters, ValueType } from './interfaces';
 
-const createName = <T>(queryText: string): string => createHash('sha256').update(queryText).digest().toString('base64');
+const createName = (queryText: string): string => createHash('sha256').update(queryText).digest().toString('base64');
 
 const createAggregator = <T>(params: QueryParameters<T>): IParamAggregator<T> => {
   const values: ValueType[] = [];
@@ -25,7 +25,7 @@ const createAggregator = <T>(params: QueryParameters<T>): IParamAggregator<T> =>
 
       return keyMap[target]!;
     },
-    values(args: Parameters<IParamAggregator<T>['value']>) {
+    values(args) {
       const items: ValueType[] = Array.isArray(args) ? args : params[args];
 
       return items.map((item) => `$${values.push(item)}`).join(',');
@@ -46,7 +46,7 @@ export const query = <T, K>(
     const parts = Array.from(template);
 
     const text = args.reduce<string>((acc, arg) => {
-      const target = typeof arg === 'function' ? arg(agg, compileValues) : arg;
+      const target = (typeof arg === 'function' ? arg(agg, compileValues) : arg) as string;
 
       return `${acc}${target in compileValues ? agg.key(target as keyof K) : target}${parts.shift()}`;
     }, parts.shift() ?? '');

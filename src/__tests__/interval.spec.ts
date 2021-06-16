@@ -10,7 +10,7 @@ describe('postrgres interval', () => {
       milliseconds: 3,
     };
 
-    expect(intervalToMiliseconds(interval)).toEqual(604003);
+    expect(intervalToMiliseconds(interval)).toStrictEqual(604003);
   });
 
   it('ms2', () => {
@@ -19,7 +19,7 @@ describe('postrgres interval', () => {
       hours: 2,
     };
 
-    expect(intervalToMiliseconds(interval)).toEqual(180000000);
+    expect(intervalToMiliseconds(interval)).toStrictEqual(180000000);
   });
 
   it('string', () => {
@@ -29,6 +29,6 @@ describe('postrgres interval', () => {
       milliseconds: 3,
     };
 
-    expect(intervalStringValue(interval)).toEqual('10 minutes 4 seconds 3 milliseconds');
+    expect(intervalStringValue(interval)).toStrictEqual('10 minutes 4 seconds 3 milliseconds');
   });
 });
