@@ -1,5 +1,5 @@
 {
-  "name": "node-norm",
+  "name": "no-orm",
   "version": "0.0.0",
   "description": "NOrm",
   "main": "./index.js",
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com/altnext/node-norm.git"
+    "url": "ssh://git@github.com/altnext/no-orm.git"
   },
   "scripts": {
     "build": "tsc",
