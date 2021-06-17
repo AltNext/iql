@@ -16,6 +16,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "tsc --build --clean",
+    "coverage": "jest --coverage",
     "husky:install": "husky install",
     "test": "jest --ci",
     "type": "tsc --noEmit --noImplicitAny"

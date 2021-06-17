@@ -22,8 +22,17 @@ jobs:
       - node/install:
           node-version: << parameters.node-version >>
           install-yarn: true
-      - run: yarn
-      - run: yarn test
+      - restore_cache:
+          keys:
+            - << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
+            - << parameters.node-version >>-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn coverage
+      - coveralls/upload
 
 workflows:
   all-tests:
