@@ -28,6 +28,7 @@ jobs:
           paths:
             - node_modules
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn type
       - run: yarn test --coverage
       - run: yarn build
   publish:
