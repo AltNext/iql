@@ -33,6 +33,19 @@ jobs:
   publish:
     executor: linux
     steps:
+      - checkout
+      - node/install:
+          node-version: current
+          install-yarn: true
+      - restore_cache:
+          keys:
+            - << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
+            - << parameters.node-version >>-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
       - run: npm publish
 
 workflows:
