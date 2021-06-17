@@ -29,6 +29,7 @@ jobs:
             - node_modules
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test --coverage
+      - run: yarn build
   publish:
     executor: linux
     steps:
@@ -46,3 +47,5 @@ workflows:
             branches:
               only:
                 -main
+          requires:
+            - test
