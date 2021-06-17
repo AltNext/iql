@@ -11,11 +11,9 @@ orbs:
 jobs:
   test:
     parameters:
-      os:
-        type: executor
       node-version:
         type: string
-    executor: << parameters.os >>
+    executor: linux
     steps:
       - checkout
       - node/install:
@@ -31,10 +29,7 @@ jobs:
             - node_modules
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
   publish:
-    parameters:
-      os:
-        type: executor
-    executor: << parameters.os >>
+    executor: linux
     steps:
       - run: npm publish
 
@@ -44,7 +39,6 @@ workflows:
       - test:
           matrix:
             parameters:
-              os: [linux]
               node-version: ['14.17.1', '15.14.0', '16.3.0']
       - publish:
           filters:
