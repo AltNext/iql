@@ -6,7 +6,6 @@ executors:
       - image: cimg/base:stable
 
 orbs:
-  coveralls: coveralls/coveralls@1.0.4
   node: circleci/node@4.5.1
 
 jobs:
@@ -31,8 +30,6 @@ jobs:
           paths:
             - node_modules
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
-      - run: yarn coverage
-      - coveralls/upload
 
 workflows:
   all-tests:
