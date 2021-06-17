@@ -61,6 +61,5 @@ workflows:
             branches:
               only:
                 - main
-                - fix-publish
           requires:
             - test
