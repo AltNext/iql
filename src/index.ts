@@ -1,3 +1,3 @@
-export type { IParamAggregator, IPostgresInterval, QueryCompiler, QueryParameters, QueryResult } from './interfaces';
-export { query, extend } from './query';
-export { intervalToMiliseconds, intervalStringValue } from './interval';
+export type { IParamAggregator, IPostgresInterval, QueryCompiler, QueryParameters, QueryResult, ValueType } from './interfaces';
+export { extend, query } from './query';
+export { intervalStringValue, intervalToMilliseconds } from './interval';

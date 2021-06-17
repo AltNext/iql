@@ -1,6 +1,6 @@
 import type { IPostgresInterval } from './interfaces';
 
-export const intervalToMiliseconds = (interval: IPostgresInterval): number => {
+export const intervalToMilliseconds = (interval: IPostgresInterval): number => {
   let milliseconds = 0;
 
   if (interval.milliseconds) {

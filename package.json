@@ -20,13 +20,14 @@
     "type": "tsc --noEmit --noImplicitAny"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.3",
-    "@types/pg": "^7.14.4",
+    "@types/jest": "^26.0.23",
+    "@types/pg": "^8.6.0",
     "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "pg": "^8.3.0",
-    "ts-jest": "26.1.0",
-    "typescript": "^3.9.5"
+    "jest": "^27.0.4",
+    "jest-junit": "^12.2.0",
+    "pg": "^8.6.0",
+    "ts-jest": "27.0.3",
+    "typescript": "^4.3.3"
   },
   "author": "Altnext Gorillaz",
   "license": "MIT",
