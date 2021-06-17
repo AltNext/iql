@@ -16,13 +16,14 @@
   "scripts": {
     "build": "tsc",
     "clean": "tsc --build --clean",
+    "husky:install": "husky install",
     "test": "jest --ci",
     "type": "tsc --noEmit --noImplicitAny"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/pg": "^8.6.0",
-    "husky": "^4.2.5",
+    "husky": "^6.0.0",
     "jest": "^27.0.4",
     "jest-junit": "^12.2.0",
     "pg": "^8.6.0",
@@ -34,10 +35,5 @@
   "eslintIgnore": [
     "dist",
     "node_modules"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn test"
-    }
-  }
+  ]
 }
