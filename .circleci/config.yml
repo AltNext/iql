@@ -30,12 +30,24 @@ jobs:
           paths:
             - node_modules
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
+  publish:
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
+    steps:
+      - run: npm publish
 
 workflows:
-  all-tests:
+  tests:
     jobs:
       - test:
           matrix:
             parameters:
               os: [linux]
               node-version: ['14.17.1', '15.14.0', '16.3.0']
+      - publish:
+          filters:
+            branches:
+              only:
+                -main
