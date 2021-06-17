@@ -3,10 +3,11 @@ version: 2.1
 executors:
   linux:
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:stable
 
 orbs:
-  node: circleci/node@2.0.0
+  coveralls: coveralls/coveralls@1.0.4
+  node: circleci/node@4.5.1
 
 jobs:
   test:
@@ -31,4 +32,4 @@ workflows:
           matrix:
             parameters:
               os: [linux]
-              node-version: ['14', '15', '16']
+              node-version: ['14.17.1', '15.14.0', '16.3.0']
