@@ -39,13 +39,13 @@ jobs:
           install-yarn: true
       - restore_cache:
           keys:
-            - << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
-            - << parameters.node-version >>-dependencies-
+            - current-dependencies-{{ checksum "yarn.lock" }}
+            - current-dependencies-
       - run: yarn install
       - save_cache:
           paths:
             - node_modules
-          key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
+          key: current-dependencies-{{ checksum "yarn.lock" }}
       - run: npm publish
 
 workflows:
