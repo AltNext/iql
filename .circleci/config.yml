@@ -36,7 +36,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          node-version: current
+          node-version: 16.3.0
           install-yarn: true
       - restore_cache:
           keys:
