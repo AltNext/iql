@@ -8,7 +8,12 @@ export interface IPostgresInterval {
   milliseconds?: number;
 }
 
-export type BaseQuery<T, K, U extends Record<string, unknown[]> = {}, F extends Record<string, unknown> = {}> = {
+export type BaseQuery<
+  T,
+  K,
+  U extends Record<string, unknown[]> = {},
+  F extends Record<string, unknown> = {}
+> = {
   [R in keyof U]: (...args: U[R]) => K;
 } &
   { [E in keyof F]: (raw: T) => F[E] };
@@ -34,17 +39,27 @@ export type QueryResult<T> = T extends QueryCompiler<infer K, unknown>
   ? R
   : unknown;
 
-export type BuilderInput<T> =
+export type BuilderInput<T, U> =
   | string
-  | keyof QueryParameters<T>
-  | ((agg: IParamAggregator<T>, values: QueryParameters<T>) => string);
+  | keyof QueryParameters<QueryCompiler<T, U>>
+  | ((
+      agg: IParamAggregator<T, U>,
+      values: QueryParameters<QueryCompiler<T, U>>
+    ) => string);
 
-export type ValueType = Date | ValueType[] | boolean | number | object | string | null;
+export type ValueType =
+  | Date
+  | ValueType[]
+  | boolean
+  | number
+  | object
+  | string
+  | null;
 
-export interface IParamAggregator<T> {
+export interface IParamAggregator<T, U> {
   props: ValueType[];
-  key<K extends keyof QueryParameters<T>>(key: K): string;
+  key<K extends keyof U>(key: K): string;
   value(item: ValueType): string;
-  values<K extends keyof QueryParameters<T>>(key: K): string;
+  values<K extends keyof U>(key: K): string;
   values(items: ValueType[]): string;
 }

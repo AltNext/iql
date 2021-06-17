@@ -18,6 +18,7 @@
     "clean": "tsc --build --clean",
     "coverage": "jest --coverage",
     "husky:install": "husky install",
+    "prepublish": "yarn build",
     "test": "jest --ci",
     "type": "tsc --noEmit --noImplicitAny"
   },
