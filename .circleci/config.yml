@@ -28,6 +28,7 @@ jobs:
           paths:
             - node_modules
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn test --coverage
   publish:
     executor: linux
     steps:
