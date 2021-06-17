@@ -1,7 +1,7 @@
 {
-  "name": "pg-norm",
+  "name": "node-norm",
   "version": "0.0.0",
-  "description": "Postgres NOrm",
+  "description": "NOrm",
   "main": "./index.js",
   "types": "./index.d.ts",
   "files": [
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com/altnext/pg-norm.git"
+    "url": "ssh://git@github.com/altnext/node-norm.git"
   },
   "scripts": {
     "build": "tsc",

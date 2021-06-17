@@ -1,9 +1,9 @@
-# pg-norm
+# node-norm
 
 This package aims to make sql queries type safe and easy to build dynamically with expresive api
 
 ```typescript
-import { query } from 'pg-norm';
+import { query } from 'node-norm';
 
 interface IRawA { id: string; foo: string; }
 
