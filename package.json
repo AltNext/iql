@@ -1,5 +1,5 @@
 {
-  "name": "node-norm",
+  "name": "no-orm",
   "version": "0.0.0",
   "description": "NOrm",
   "main": "./index.js",
@@ -11,12 +11,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com/altnext/node-norm.git"
+    "url": "ssh://git@github.com/altnext/no-orm.git"
   },
   "scripts": {
     "build": "tsc",
     "clean": "tsc --build --clean",
+    "coverage": "jest --coverage",
     "husky:install": "husky install",
+    "prepublish": "yarn build",
     "test": "jest --ci",
     "type": "tsc --noEmit --noImplicitAny"
   },
