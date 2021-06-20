@@ -61,6 +61,5 @@ workflows:
             branches:
               only:
                 - main
-                - rename-package
           requires:
             - test
