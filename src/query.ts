@@ -47,7 +47,7 @@ const createAggregator = <T, U>(
   };
 };
 
-export const query = <T, K>(
+export const query = <T, K = void>(
   template: TemplateStringsArray,
   ...args: BuilderInput<T, K>[]
 ): QueryCompiler<T, K> => ({
