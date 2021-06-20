@@ -30,6 +30,7 @@ jobs:
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn type
       - run: yarn test --coverage
+      - run: yarn coveralls < coverage/lcov.info
       - run: yarn build
   publish:
     executor: linux
