@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - changesets-fixes
 
 jobs:
   release:
@@ -17,10 +18,7 @@ jobs:
           ref: main
           fetch-depth: 50
 
-      - name: Fetch all tags (for releases)
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-
-      - name: Setup Node (uses version in .nvmrc)
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 14
