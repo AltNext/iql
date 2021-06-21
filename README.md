@@ -1,8 +1,5 @@
 # IQL
 
-[![CircleCI](https://circleci.com/gh/AltNext/iql/tree/main.svg?style=svg)](https://circleci.com/gh/AltNext/iql/tree/main)
-[![Coverage Status](https://coveralls.io/repos/github/AltNext/iql/badge.svg?branch=main)](https://coveralls.io/github/AltNext/iql?branch=master)
-
 Inline Query Language
 
 This package aims to make SQL-like queries type safe and easy to build dynamically with an expressive API

@@ -17,12 +17,16 @@
     "build": "tsc",
     "clean": "tsc --build --clean",
     "coverage": "jest --coverage",
-    "husky:install": "husky install",
-    "prepublish": "yarn build",
+    "prepare": "husky install",
+    "prerelease": "yarn build",
+    "release": "changeset publish",
     "test": "jest --ci",
     "type": "tsc --noEmit --noImplicitAny"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.16.0",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@types/jest": "^26.0.23",
     "@types/pg": "^8.6.0",
     "husky": "^6.0.0",
