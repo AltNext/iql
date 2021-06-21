@@ -3,4 +3,7 @@ node_modules/
 **/*.js
 **/*.d.ts
 .idea/
+
+# Coverage
+coverage/
 reports/

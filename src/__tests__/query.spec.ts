@@ -1,4 +1,4 @@
-import { extend, query } from '../query';
+import { extend, query } from '../index';
 
 describe('query', () => {
   it('index', () => {
