@@ -1,17 +1,26 @@
-# no-orm
+# IQL
 
-[![CircleCI](https://circleci.com/gh/AltNext/no-orm/tree/main.svg?style=svg)](https://circleci.com/gh/AltNext/no-orm/tree/main)
-[![Coverage Status](https://coveralls.io/repos/github/AltNext/no-orm/badge.svg?branch=main)](https://coveralls.io/github/AltNext/no-orm?branch=master)
+[![CircleCI](https://circleci.com/gh/AltNext/iql/tree/main.svg?style=svg)](https://circleci.com/gh/AltNext/iql/tree/main)
+[![Coverage Status](https://coveralls.io/repos/github/AltNext/iql/badge.svg?branch=main)](https://coveralls.io/github/AltNext/iql?branch=master)
 
-This package aims to make sql queries type safe and easy to build dynamically with expresive api
+Inline Query Language
+
+This package aims to make SQL-like queries type safe and easy to build dynamically with an expressive API
 
 ```typescript
-import { query } from 'no-orm';
+import { query } from 'iql';
 
-interface IRawA { id: string; foo: string; }
+interface IRawUser {
+  id: string; 
+  name: string;
+}
 
-const findA = query<IRawA, { id: string }>`
-SELECT id, foo FROM public.a
+interface IUserParams {
+  id: string;
+}
+
+const findA = query<IRawUser, IUserParams>`
+SELECT id, name FROM public.users
 WHERE id = ${'id'};
 `;
 ```
