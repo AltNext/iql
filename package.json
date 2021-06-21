@@ -1,7 +1,7 @@
 {
-  "name": "no-orm",
-  "version": "0.0.0",
-  "description": "NOrm",
+  "name": "iql",
+  "version": "0.0.0-rc.0",
+  "description": "IQL - Inline Query Language",
   "main": "./index.js",
   "types": "./index.d.ts",
   "files": [
@@ -11,17 +11,21 @@
   ],
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com/altnext/no-orm.git"
+    "url": "ssh://git@github.com/altnext/iql.git"
   },
   "scripts": {
     "build": "tsc",
     "clean": "tsc --build --clean",
     "coverage": "jest --coverage",
-    "husky:install": "husky install",
+    "prepare": "husky install",
+    "release": "changeset publish",
     "test": "jest --ci",
     "type": "tsc --noEmit --noImplicitAny"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.16.0",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@types/jest": "^26.0.23",
     "@types/pg": "^8.6.0",
     "@jest/types": "^27.0.2",
