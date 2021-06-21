@@ -22,7 +22,7 @@ Postgres internal representation of intervals
 
 #### Defined in
 
-[src/interfaces.ts:7](https://github.com/altnext/iql/blob/1dab42b/src/interfaces.ts#L7)
+[src/interfaces.ts:7](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L7)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/interfaces.ts:8](https://github.com/altnext/iql/blob/1dab42b/src/interfaces.ts#L8)
+[src/interfaces.ts:8](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L8)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/interfaces.ts:11](https://github.com/altnext/iql/blob/1dab42b/src/interfaces.ts#L11)
+[src/interfaces.ts:11](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L11)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[src/interfaces.ts:9](https://github.com/altnext/iql/blob/1dab42b/src/interfaces.ts#L9)
+[src/interfaces.ts:9](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L9)
 
 ___
 
@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-[src/interfaces.ts:10](https://github.com/altnext/iql/blob/1dab42b/src/interfaces.ts#L10)
+[src/interfaces.ts:10](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L10)
