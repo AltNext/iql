@@ -29,7 +29,7 @@ jobs:
             - node_modules
           key: << parameters.node-version >>-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn type
-      - run: yarn test --coverage
+      - run: yarn test --coverage --inlineSourceMap
       - run: yarn coveralls < coverage/lcov.info
       - run: yarn build
   publish:
