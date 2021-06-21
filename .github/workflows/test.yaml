@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  install:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
