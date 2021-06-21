@@ -17,6 +17,7 @@
     "build": "tsc",
     "clean": "tsc --build --clean",
     "coverage": "jest --coverage",
+    "docs": "yarn typedoc --disableSources index.ts",
     "prepare": "husky install",
     "prerelease": "yarn build",
     "release": "changeset publish",

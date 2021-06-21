@@ -40,10 +40,6 @@ Return type of the query/extend functions
 | `From` | `From`: `Record`<string, unknown[]\> = {} |
 | `To` | `To`: `Record`<string, unknown\> = {} |
 
-#### Defined in
-
-[src/interfaces.ts:64](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L64)
-
 ___
 
 ### QueryParameters
@@ -57,10 +53,6 @@ Utility type for getting a query's parameters
 | Name |
 | :------ |
 | `T` |
-
-#### Defined in
-
-[src/interfaces.ts:76](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L76)
 
 ___
 
@@ -76,10 +68,6 @@ Utility type for getting a query's result row type
 | :------ |
 | `T` |
 
-#### Defined in
-
-[src/interfaces.ts:85](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L85)
-
 ___
 
 ### ValueType
@@ -87,10 +75,6 @@ ___
 Ƭ **ValueType**: `Date` \| [ValueType](modules.md#valuetype)[] \| `boolean` \| `number` \| `object` \| `string` \| ``null``
 
 Value types accepted by the pg library
-
-#### Defined in
-
-[src/interfaces.ts:17](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L17)
 
 ## Functions
 
@@ -134,10 +118,6 @@ const publicUser = findB.toPublic(row); // publicUser.happy === true
 
 [QueryCompiler](modules.md#querycompiler)<K, L, `M` & `T`, `N` & `U`\>
 
-#### Defined in
-
-[src/query.ts:115](https://github.com/altnext/iql/blob/879204c/src/query.ts#L115)
-
 ___
 
 ### intervalStringValue
@@ -156,10 +136,6 @@ Translates Postgres interval object to string
 
 `string`
 
-#### Defined in
-
-[src/interval.ts:37](https://github.com/altnext/iql/blob/879204c/src/interval.ts#L37)
-
 ___
 
 ### intervalToMilliseconds
@@ -177,10 +153,6 @@ Translates Postgres intervals to milliseconds
 #### Returns
 
 `number`
-
-#### Defined in
-
-[src/interval.ts:7](https://github.com/altnext/iql/blob/879204c/src/interval.ts#L7)
 
 ___
 
@@ -230,7 +202,3 @@ OR id IN (${(agg) => agg.values('ids')}); -- Same as above
 #### Returns
 
 [QueryCompiler](modules.md#querycompiler)<T, K, `Object`, `Object`\>
-
-#### Defined in
-
-[src/query.ts:79](https://github.com/altnext/iql/blob/879204c/src/query.ts#L79)

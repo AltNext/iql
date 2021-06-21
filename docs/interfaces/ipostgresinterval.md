@@ -20,19 +20,11 @@ Postgres internal representation of intervals
 
 • `Optional` **days**: `number`
 
-#### Defined in
-
-[src/interfaces.ts:7](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L7)
-
 ___
 
 ### hours
 
 • `Optional` **hours**: `number`
-
-#### Defined in
-
-[src/interfaces.ts:8](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L8)
 
 ___
 
@@ -40,26 +32,14 @@ ___
 
 • `Optional` **milliseconds**: `number`
 
-#### Defined in
-
-[src/interfaces.ts:11](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L11)
-
 ___
 
 ### minutes
 
 • `Optional` **minutes**: `number`
 
-#### Defined in
-
-[src/interfaces.ts:9](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L9)
-
 ___
 
 ### seconds
 
 • `Optional` **seconds**: `number`
-
-#### Defined in
-
-[src/interfaces.ts:10](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L10)

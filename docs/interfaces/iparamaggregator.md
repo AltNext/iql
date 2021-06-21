@@ -29,10 +29,6 @@ The aggregator, used by the query function to parse and manipulate parameters
 
 • **props**: [ValueType](../modules.md#valuetype)[]
 
-#### Defined in
-
-[src/interfaces.ts:30](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L30)
-
 ## Methods
 
 ### key
@@ -55,10 +51,6 @@ The aggregator, used by the query function to parse and manipulate parameters
 
 `string`
 
-#### Defined in
-
-[src/interfaces.ts:31](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L31)
-
 ___
 
 ### value
@@ -74,10 +66,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[src/interfaces.ts:32](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L32)
 
 ___
 
@@ -101,10 +89,6 @@ ___
 
 `string`
 
-#### Defined in
-
-[src/interfaces.ts:33](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L33)
-
 ▸ **values**(`items`): `string`
 
 #### Parameters
@@ -116,7 +100,3 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[src/interfaces.ts:34](https://github.com/altnext/iql/blob/879204c/src/interfaces.ts#L34)
