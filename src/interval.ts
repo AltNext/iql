@@ -1,5 +1,9 @@
-import type { IPostgresInterval } from './interfaces';
+import type { IPostgresInterval } from "./interfaces";
 
+/**
+ * Translates Postgres intervals to milliseconds
+ * @param interval - IPostgresInterval to translate
+ */
 export const intervalToMilliseconds = (interval: IPostgresInterval): number => {
   let milliseconds = 0;
 
@@ -26,7 +30,11 @@ export const intervalToMilliseconds = (interval: IPostgresInterval): number => {
   return milliseconds;
 };
 
+/**
+ * Translates Postgres interval object to string
+ * @param interval
+ */
 export const intervalStringValue = (interval: IPostgresInterval): string =>
   Object.entries(interval)
     .map(([key, value]) => `${value} ${key}`)
-    .join(' ');
+    .join(" ");

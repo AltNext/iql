@@ -1,13 +1,13 @@
-import { extend, query } from '../index';
+import { extend, query } from "../index";
 
-describe('query', () => {
-  it('index', () => {
+describe("query", () => {
+  it("index", () => {
     const findMe = query<{ id: string }, [string]>`
       SELECT * FROM public.foo
         WHERE id = $1::text
     `;
 
-    const id = 'asdasda';
+    const id = "asdasda";
 
     const q = findMe.compile([id]);
 
@@ -21,13 +21,13 @@ describe('query', () => {
     });
   });
 
-  it('key', () => {
+  it("key", () => {
     const findMe = query<{ id: string }, { id: string }>`
       SELECT * FROM public.foo
-        WHERE id = ${'id'}::text
+        WHERE id = ${"id"}::text
     `;
 
-    const id = 'asdasda';
+    const id = "asdasda";
 
     const q = findMe.compile({ id });
 
@@ -41,13 +41,13 @@ describe('query', () => {
     });
   });
 
-  it('multi call', () => {
+  it("multi call", () => {
     const findMe = query<{ id: string }, { id: string }>`
       SELECT * FROM public.foo
-        WHERE id = ${'id'}::text
+        WHERE id = ${"id"}::text
     `;
 
-    const id = 'asdasda';
+    const id = "asdasda";
 
     const queries = Array.from({ length: 5 }, () => findMe.compile({ id }));
 
@@ -63,15 +63,15 @@ describe('query', () => {
     }
   });
 
-  it('key multiple', () => {
+  it("key multiple", () => {
     const findMe = query<{ id: string }, { bar: string; id: string }>`
       SELECT id FROM public.foo
-        WHERE id = ${'id'}::text
-          AND foo = ${'bar'}::text
+        WHERE id = ${"id"}::text
+          AND foo = ${"bar"}::text
     `;
 
-    const id = 'foo';
-    const bar = 'bar2000';
+    const id = "foo";
+    const bar = "bar2000";
 
     const q = findMe.compile({ id, bar });
 
@@ -86,15 +86,15 @@ describe('query', () => {
     });
   });
 
-  it('key multiple reverse', () => {
+  it("key multiple reverse", () => {
     const findMe = query<{ id: string }, { bar: string; id: string }>`
       SELECT id FROM public.foo
-        WHERE id = ${'id'}::text
-          AND foo = ${'bar'}::text
+        WHERE id = ${"id"}::text
+          AND foo = ${"bar"}::text
     `;
 
-    const id = 'foo';
-    const bar = 'bar2000';
+    const id = "foo";
+    const bar = "bar2000";
 
     const q = findMe.compile({ bar, id });
 
@@ -109,13 +109,13 @@ describe('query', () => {
     });
   });
 
-  it('array', () => {
+  it("array", () => {
     const findMe = query<{ id: string }, string[]>`
       SELECT id FROM public.foo
         WHERE id in (${(agg, items) => agg.values(items)})
     `;
 
-    const values = ['foo', 'bar', 'and', 'cheddar'];
+    const values = ["foo", "bar", "and", "cheddar"];
 
     const q = findMe.compile(values);
 
@@ -129,17 +129,17 @@ describe('query', () => {
     });
   });
 
-  it('key array', () => {
+  it("key array", () => {
     const findMe = query<{ id: string }, { id: string; tags: string[] }>`
       SELECT id FROM public.foo
-        WHERE id = ${'id'}
+        WHERE id = ${"id"}
         AND tags in (${(agg, { tags }) => agg.values(tags)})
     `;
 
-    const id = 'foobar';
-    const tags = ['foo', 'bar', 'and', 'cheddar'];
+    const id = "foobar";
+    const tags = ["foo", "bar", "and", "cheddar"];
 
-    const q = findMe.compile({ tags, id: 'foobar' });
+    const q = findMe.compile({ tags, id: "foobar" });
 
     expect(q).toStrictEqual({
       name: expect.anything(),
@@ -152,20 +152,20 @@ describe('query', () => {
     });
   });
 
-  it('extention', () => {
+  it("extention", () => {
     const findMe = query<{ id: string }, string[]>`
       SELECT id FROM public.foo
         WHERE id in (${(agg, values) => agg.values(values)})
     `;
 
-    const findMeExtended = extend(findMe, { to: { asId: ({ id }) => id } });
+    const findMeExtended = extend(findMe, { to: { id: ({ id }) => id } });
 
-    const result = { id: 'foobar' };
+    const result = { id: "foobar" };
 
-    expect(findMeExtended.asId(result)).toStrictEqual(result.id);
+    expect(findMeExtended.toId(result)).toStrictEqual(result.id);
   });
 
-  it('query name', () => {
+  it("query name", () => {
     const findMe = query<unknown, { a: number[]; b: number[] }>`
       SELECT * FROM public.foo
         WHERE a in (${(agg, { a }) => agg.values(a)})

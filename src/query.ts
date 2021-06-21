@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import { createHash } from "crypto";
 
 import type {
   BuilderInput,
@@ -6,10 +6,10 @@ import type {
   QueryCompiler,
   QueryParameters,
   ValueType,
-} from './interfaces';
+} from "./interfaces";
 
 const createName = (queryText: string): string =>
-  createHash('sha256').update(queryText).digest().toString('base64');
+  createHash("sha256").update(queryText).digest().toString("base64");
 
 const createAggregator = <T, U>(
   params: QueryParameters<QueryCompiler<T, U>>
@@ -47,6 +47,32 @@ const createAggregator = <T, U>(
   };
 };
 
+/**
+ * ```typescript
+ * interface IRawUser {
+ *  id: string;
+ *  name: string;
+ * }
+
+ * interface IUserParams {
+ *  id: string;
+ *  ids: string[] | string;
+ * }
+
+ * const findA = query<IRawUser, IUserParams>`
+ * SELECT id, name FROM public.users
+ * WHERE id = ${'id'}
+ * -- WHERE id = $1
+ * OR id = ${(agg) => agg.key('id')}
+ * -- OR id = $1
+ * OR id = ${(agg, { id }) => agg.value(id)} -- This creates a new parameter each time it is called
+ * -- OR id = $2
+ * OR id IN (${(agg, { ids }) => agg.values(ids)}); -- Creates parameters for each member of passed value, each time it is called.
+ * OR id IN (${(agg) => agg.values('ids')}); -- Same as above
+ * -- OR id IN ($3, $4, ..., $N);
+ * `;
+ * ```
+ */
 export const query = <T, K = void>(
   template: TemplateStringsArray,
   ...args: BuilderInput<T, K>[]
@@ -57,13 +83,11 @@ export const query = <T, K = void>(
     const parts = Array.from(template);
 
     const text = args.reduce<string>((acc, arg) => {
-      const target = (typeof arg === "function"
-        ? arg(agg, compileValues)
-        : arg) as string;
+      if (typeof arg === "function") {
+        return `${acc}${arg(agg, compileValues)}${parts.shift()}`;
+      }
 
-      return `${acc}${
-        target in compileValues ? agg.key(target as keyof K) : target
-      }${parts.shift()}`;
+      return `${acc}${agg.key(arg)}${parts.shift()}`;
     }, parts.shift() ?? "");
 
     const name = createName(text);
@@ -72,6 +96,19 @@ export const query = <T, K = void>(
   },
 });
 
+/**
+ * const findB = extend(findA, {
+ *   to: {
+ *     public: (raw) => ({ ...raw, happy: true }),
+ *   },
+ *   from: {
+ *     register: (name: string) => ({ id: generateRandomString(), name }),
+ *   },
+ * });
+ *
+ * const row = findB.fromRegister('iql'); // row is of type IRawUser
+ * const publicUser = findB.toPublic(row); // publicUser.happy === true
+ */
 export const extend = <
   T extends Record<string, unknown[]>,
   U extends Record<string, unknown>,
@@ -88,6 +125,22 @@ export const extend = <
 ): QueryCompiler<K, L, M & T, N & U> =>
   ({
     ...input,
-    ...(change.from ? change.from : {}),
-    ...(change.to ? change.to : {}),
+    ...(change.from
+      ? Object.entries(change.from).reduce(
+          (acc, [from, value]) => ({
+            ...acc,
+            [`from${from[0].toUpperCase()}${from.slice(1)}`]: value,
+          }),
+          {}
+        )
+      : {}),
+    ...(change.to
+      ? Object.entries(change.to).reduce(
+          (acc, [from, value]) => ({
+            ...acc,
+            [`to${from[0].toUpperCase()}${from.slice(1)}`]: value,
+          }),
+          {}
+        )
+      : {}),
   } as QueryCompiler<K, L, M & T, N & U>);
