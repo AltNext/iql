@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#19](https://github.com/AltNext/iql/pull/19) [`a214b2d`](https://github.com/AltNext/iql/commit/a214b2d2cbcfbcaedc7874db412bd9682199bbf6) Thanks [@roikoren755](https://github.com/roikoren755)! - feat!: add prefix to {to,from} transformers
+- [#19](https://github.com/AltNext/iql/pull/19) [`a214b2d`](https://github.com/AltNext/iql/commit/a214b2d2cbcfbcaedc7874db412bd9682199bbf6) Thanks [@roikoren755](https://github.com/roikoren755)! - feat: add prefix to {to,from} transformers
 
 ### Patch Changes
 
