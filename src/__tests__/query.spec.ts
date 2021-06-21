@@ -1,10 +1,10 @@
 import { extend, query } from '../index';
 
 describe('query', () => {
-  it('index', () => {
+  it('should accept an array of parameters', () => {
     const findMe = query<{ id: string }, [string]>`
       SELECT * FROM public.foo
-        WHERE id = $1::text
+        WHERE id = $1::TEXT
     `;
 
     const id = 'asdasda';
@@ -12,19 +12,19 @@ describe('query', () => {
     const q = findMe.compile([id]);
 
     expect(q).toStrictEqual({
-      name: expect.anything(),
+      name: expect.stringContaining(''),
       text: `
       SELECT * FROM public.foo
-        WHERE id = $1::text
+        WHERE id = $1::TEXT
     `,
       values: [id],
     });
   });
 
-  it('key', () => {
+  it('should access key of parameters', () => {
     const findMe = query<{ id: string }, { id: string }>`
       SELECT * FROM public.foo
-        WHERE id = ${'id'}::text
+        WHERE id = ${'id'}::TEXT
     `;
 
     const id = 'asdasda';
@@ -32,19 +32,60 @@ describe('query', () => {
     const q = findMe.compile({ id });
 
     expect(q).toStrictEqual({
-      name: expect.anything(),
+      name: expect.stringContaining(''),
       text: `
       SELECT * FROM public.foo
-        WHERE id = $1::text
+        WHERE id = $1::TEXT
     `,
       values: [id],
     });
   });
 
-  it('multi call', () => {
+  it('should add .value to parameters', () => {
+    const id = 'asdasda';
+    const findMe = query<{ id: string }>`
+      SELECT * FROM public.foo
+        WHERE id = ${(agg) => agg.value(id)}::TEXT
+    `;
+
+    const q = findMe.compile();
+
+    expect(q).toStrictEqual({
+      name: expect.stringContaining(''),
+      text: `
+      SELECT * FROM public.foo
+        WHERE id = $1::TEXT
+    `,
+      values: [id],
+    });
+  });
+
+  it('should use same parameter for multiple calls to same key', () => {
     const findMe = query<{ id: string }, { id: string }>`
       SELECT * FROM public.foo
-        WHERE id = ${'id'}::text
+        WHERE id = ${'id'}::TEXT
+        OR id = ${'id'}::TEXT
+    `;
+
+    const id = 'asdasda';
+
+    const q = findMe.compile({ id });
+
+    expect(q).toStrictEqual({
+      name: expect.stringContaining(''),
+      text: `
+      SELECT * FROM public.foo
+        WHERE id = $1::TEXT
+        OR id = $1::TEXT
+    `,
+      values: [id],
+    });
+  });
+
+  it('should compile to same config with multiple calls', () => {
+    const findMe = query<{ id: string }, { id: string }>`
+      SELECT * FROM public.foo
+        WHERE id = ${'id'}::TEXT
     `;
 
     const id = 'asdasda';
@@ -53,21 +94,21 @@ describe('query', () => {
 
     for (const q of queries) {
       expect(q).toStrictEqual({
-        name: expect.anything(),
+        name: expect.stringContaining(''),
         text: `
       SELECT * FROM public.foo
-        WHERE id = $1::text
+        WHERE id = $1::TEXT
     `,
         values: [id],
       });
     }
   });
 
-  it('key multiple', () => {
+  it('should access multiple keys', () => {
     const findMe = query<{ id: string }, { bar: string; id: string }>`
       SELECT id FROM public.foo
-        WHERE id = ${'id'}::text
-          AND foo = ${'bar'}::text
+        WHERE id = ${'id'}::TEXT
+          AND foo = ${'bar'}::TEXT
     `;
 
     const id = 'foo';
@@ -76,21 +117,21 @@ describe('query', () => {
     const q = findMe.compile({ id, bar });
 
     expect(q).toStrictEqual({
-      name: expect.anything(),
+      name: expect.stringContaining(''),
       text: `
       SELECT id FROM public.foo
-        WHERE id = $1::text
-          AND foo = $2::text
+        WHERE id = $1::TEXT
+          AND foo = $2::TEXT
     `,
       values: [id, bar],
     });
   });
 
-  it('key multiple reverse', () => {
+  it('should ignore order of params', () => {
     const findMe = query<{ id: string }, { bar: string; id: string }>`
       SELECT id FROM public.foo
-        WHERE id = ${'id'}::text
-          AND foo = ${'bar'}::text
+        WHERE id = ${'id'}::TEXT
+          AND foo = ${'bar'}::TEXT
     `;
 
     const id = 'foo';
@@ -99,17 +140,17 @@ describe('query', () => {
     const q = findMe.compile({ bar, id });
 
     expect(q).toStrictEqual({
-      name: expect.anything(),
+      name: expect.stringContaining(''),
       text: `
       SELECT id FROM public.foo
-        WHERE id = $1::text
-          AND foo = $2::text
+        WHERE id = $1::TEXT
+          AND foo = $2::TEXT
     `,
       values: [id, bar],
     });
   });
 
-  it('array', () => {
+  it('should parse array in .values', () => {
     const findMe = query<{ id: string }, string[]>`
       SELECT id FROM public.foo
         WHERE id in (${(agg, items) => agg.values(items)})
@@ -120,7 +161,7 @@ describe('query', () => {
     const q = findMe.compile(values);
 
     expect(q).toStrictEqual({
-      name: expect.anything(),
+      name: expect.stringContaining(''),
       text: `
       SELECT id FROM public.foo
         WHERE id in ($1,$2,$3,$4)
@@ -129,11 +170,11 @@ describe('query', () => {
     });
   });
 
-  it('key array', () => {
+  it('should access array by key in .values', () => {
     const findMe = query<{ id: string }, { id: string; tags: string[] }>`
       SELECT id FROM public.foo
         WHERE id = ${'id'}
-        AND tags in (${(agg, { tags }) => agg.values(tags)})
+        AND tags in (${(agg) => agg.values('tags')})
     `;
 
     const id = 'foobar';
@@ -142,7 +183,7 @@ describe('query', () => {
     const q = findMe.compile({ tags, id: 'foobar' });
 
     expect(q).toStrictEqual({
-      name: expect.anything(),
+      name: expect.stringContaining(''),
       text: `
       SELECT id FROM public.foo
         WHERE id = $1
@@ -152,20 +193,35 @@ describe('query', () => {
     });
   });
 
-  it('extention', () => {
+  it('should work with no helpers with extend', () => {
+    const findMe = query<{ id: string }, string[]>`
+        SELECT id FROM public.foo
+        WHERE id in (${(agg, values) => agg.values(values)})
+    `;
+
+    const findMeExtended = extend(findMe, {});
+
+    expect(Object.keys(findMeExtended)).toStrictEqual(['compile']);
+  });
+
+  it('should add helpers with extend', () => {
     const findMe = query<{ id: string }, string[]>`
       SELECT id FROM public.foo
         WHERE id in (${(agg, values) => agg.values(values)})
     `;
 
-    const findMeExtended = extend(findMe, { to: { asId: ({ id }) => id } });
+    const findMeExtended = extend(findMe, {
+      to: { id: ({ id }) => id },
+      from: { id: ({ id }: { id: string }) => [id] },
+    });
 
     const result = { id: 'foobar' };
 
-    expect(findMeExtended.asId(result)).toStrictEqual(result.id);
+    expect(findMeExtended.toId(result)).toStrictEqual(result.id);
+    expect(findMeExtended.fromId(result)).toStrictEqual([result.id]);
   });
 
-  it('query name', () => {
+  it('should create diiferent query names', () => {
     const findMe = query<unknown, { a: number[]; b: number[] }>`
       SELECT * FROM public.foo
         WHERE a in (${(agg, { a }) => agg.values(a)})
@@ -176,5 +232,15 @@ describe('query', () => {
     const queryB = findMe.compile({ a: [1, 1], b: [1] });
 
     expect(queryA.name).not.toStrictEqual(queryB.name);
+  });
+
+  it('should not fail for empty query', () => {
+    const findMe = query``;
+
+    expect(findMe.compile()).toStrictEqual({
+      name: expect.stringContaining(''),
+      text: '',
+      values: [],
+    });
   });
 });
