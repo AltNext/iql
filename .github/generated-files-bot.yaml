@@ -1,0 +1,7 @@
+generatedFiles:
+  - path: '.github/**'
+    message: '`.github/**` should not be updated by outside contributors'
+ignoreAuthors:
+  - 'roikoren755'
+  - 'joni7777'
+  - 'DmitryDodzin'
