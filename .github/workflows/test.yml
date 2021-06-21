@@ -31,30 +31,23 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: yarn install
-#      - name: Lint
-#        run: yarn lint
       - name: Coverage
         run: yarn test --coverage
-      - name: Upload Coveralls
-        run: yarn coveralls < coverage/lcov.info
-        env:
-          COVERALLS_REPO_TOKEN: "${{ secrets.COVERALLS_REPO_TOKEN }}"
-          COVERALLS_GIT_BRANCH: "${{ github.ref }}"
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          flag-name: run-${{ matrix.node-version }}
+          parallel: true
       - name: Build
         run: yarn build
-#      - name: Coveralls Parallel
-#        uses: coverallsapp/github-action@master
-#        with:
-#          github-token: ${{ secrets.github_token }}
-#          flag-name: run-${{ matrix.node-version }}
-#          parallel: true
 
-#  finish:
-#    needs: test
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Coveralls Finished
-#        uses: coverallsapp/github-action@master
-#        with:
-#          github-token: ${{ secrets.github_token }}
-#          parallel-finished: true
+finish:
+  needs: test
+  runs-on: ubuntu-latest
+  steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GH_TOKEN }}
+        parallel-finished: true
