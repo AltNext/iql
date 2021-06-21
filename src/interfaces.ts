@@ -1,4 +1,4 @@
-import type { QueryConfig } from "pg";
+import type { QueryConfig } from 'pg';
 
 /**
  * Postgres internal representation of intervals

@@ -1,4 +1,4 @@
-import { createHash } from "crypto";
+import { createHash } from 'crypto';
 
 import type {
   BuilderInput,
@@ -6,13 +6,13 @@ import type {
   QueryCompiler,
   QueryParameters,
   ValueType,
-} from "./interfaces";
+} from './interfaces';
 
 /**
  * Utility function to generate a consistent query name
  */
 const createName = (queryText: string): string =>
-  createHash("sha256").update(queryText).digest().toString("base64");
+  createHash('sha256').update(queryText).digest().toString('base64');
 
 const createAggregator = <T, U>(
   params: QueryParameters<QueryCompiler<T, U>>
@@ -42,7 +42,7 @@ const createAggregator = <T, U>(
         ? args
         : ((params[args] as unknown) as ValueType[]);
 
-      return items.map((item) => `$${values.push(item)}`).join(",");
+      return items.map((item) => `$${values.push(item)}`).join(',');
     },
     value(item) {
       return `$${values.push(item)}`;
@@ -86,12 +86,12 @@ export const query = <T, K = void>(
     const parts = Array.from(template);
 
     const text = args.reduce<string>((acc, arg) => {
-      if (typeof arg === "function") {
+      if (typeof arg === 'function') {
         return `${acc}${arg(agg, compileValues)}${parts.shift()}`;
       }
 
       return `${acc}${agg.key(arg)}${parts.shift()}`;
-    }, parts.shift() ?? "");
+    }, parts.shift() ?? '');
 
     const name = createName(text);
 
