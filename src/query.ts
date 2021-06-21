@@ -8,6 +8,9 @@ import type {
   ValueType,
 } from "./interfaces";
 
+/**
+ * Utility function to generate a consistent query name
+ */
 const createName = (queryText: string): string =>
   createHash("sha256").update(queryText).digest().toString("base64");
 

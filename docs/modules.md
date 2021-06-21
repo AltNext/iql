@@ -42,7 +42,7 @@ Return type of the query/extend functions
 
 #### Defined in
 
-[src/interfaces.ts:64](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L64)
+[src/interfaces.ts:64](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L64)
 
 ___
 
@@ -60,7 +60,7 @@ Utility type for getting a query's parameters
 
 #### Defined in
 
-[src/interfaces.ts:76](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L76)
+[src/interfaces.ts:76](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L76)
 
 ___
 
@@ -78,7 +78,7 @@ Utility type for getting a query's result row type
 
 #### Defined in
 
-[src/interfaces.ts:85](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L85)
+[src/interfaces.ts:85](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L85)
 
 ___
 
@@ -90,7 +90,7 @@ Value types accepted by the pg library
 
 #### Defined in
 
-[src/interfaces.ts:17](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L17)
+[src/interfaces.ts:17](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L17)
 
 ## Functions
 
@@ -136,7 +136,7 @@ const publicUser = findB.toPublic(row); // publicUser.happy === true
 
 #### Defined in
 
-[src/query.ts:112](https://github.com/altnext/iql/blob/8e73bdf/src/query.ts#L112)
+[src/query.ts:115](https://github.com/altnext/iql/blob/ab56ffc/src/query.ts#L115)
 
 ___
 
@@ -158,7 +158,7 @@ Translates Postgres interval object to string
 
 #### Defined in
 
-[src/interval.ts:37](https://github.com/altnext/iql/blob/8e73bdf/src/interval.ts#L37)
+[src/interval.ts:37](https://github.com/altnext/iql/blob/ab56ffc/src/interval.ts#L37)
 
 ___
 
@@ -180,7 +180,7 @@ Translates Postgres intervals to milliseconds
 
 #### Defined in
 
-[src/interval.ts:7](https://github.com/altnext/iql/blob/8e73bdf/src/interval.ts#L7)
+[src/interval.ts:7](https://github.com/altnext/iql/blob/ab56ffc/src/interval.ts#L7)
 
 ___
 
@@ -233,4 +233,4 @@ OR id IN (${(agg) => agg.values('ids')}); -- Same as above
 
 #### Defined in
 
-[src/query.ts:76](https://github.com/altnext/iql/blob/8e73bdf/src/query.ts#L76)
+[src/query.ts:79](https://github.com/altnext/iql/blob/ab56ffc/src/query.ts#L79)

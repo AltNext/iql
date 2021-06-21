@@ -31,7 +31,7 @@ The aggregator, used by the query function to parse and manipulate parameters
 
 #### Defined in
 
-[src/interfaces.ts:30](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L30)
+[src/interfaces.ts:30](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L30)
 
 ## Methods
 
@@ -57,7 +57,7 @@ The aggregator, used by the query function to parse and manipulate parameters
 
 #### Defined in
 
-[src/interfaces.ts:31](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L31)
+[src/interfaces.ts:31](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L31)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[src/interfaces.ts:32](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L32)
+[src/interfaces.ts:32](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L32)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[src/interfaces.ts:33](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L33)
+[src/interfaces.ts:33](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L33)
 
 ▸ **values**(`items`): `string`
 
@@ -119,4 +119,4 @@ ___
 
 #### Defined in
 
-[src/interfaces.ts:34](https://github.com/altnext/iql/blob/8e73bdf/src/interfaces.ts#L34)
+[src/interfaces.ts:34](https://github.com/altnext/iql/blob/ab56ffc/src/interfaces.ts#L34)
