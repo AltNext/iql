@@ -1,4 +1,4 @@
-import { intervalStringValue, intervalToMilliseconds } from '../interval';
+import { intervalStringValue, intervalToMilliseconds } from '../index';
 
 import type { IPostgresInterval } from '../interfaces';
 
