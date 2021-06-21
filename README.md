@@ -1,14 +1,23 @@
-# no-orm
+# IQL
 
-This package aims to make sql queries type safe and easy to build dynamically with expresive api
+Inline Query Language
+
+This package aims to make SQL-like queries type safe and easy to build dynamically with an expressive API
 
 ```typescript
-import { query } from 'no-orm';
+import { query } from 'iql';
 
-interface IRawA { id: string; foo: string; }
+interface IRawUser {
+  id: string; 
+  name: string;
+}
 
-const findA = query<IRawA, { id: string }>`
-SELECT id, foo FROM public.a
+interface IUserParams {
+  id: string;
+}
+
+const findA = query<IRawUser, IUserParams>`
+SELECT id, name FROM public.users
 WHERE id = ${'id'};
 `;
 ```
