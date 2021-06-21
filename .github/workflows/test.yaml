@@ -33,25 +33,25 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: yarn install
-      - name: Lint
-        run: yarn lint
+#      - name: Lint
+#        run: yarn lint
       - name: Test
         run: yarn test
       - name: Build
         run: yarn build
-      - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
-          flag-name: run-${{ matrix.node-version }}
-          parallel: true
+#      - name: Coveralls Parallel
+#        uses: coverallsapp/github-action@master
+#        with:
+#          github-token: ${{ secrets.github_token }}
+#          flag-name: run-${{ matrix.node-version }}
+#          parallel: true
 
-  finish:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
-          parallel-finished: true
+#  finish:
+#    needs: test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Coveralls Finished
+#        uses: coverallsapp/github-action@master
+#        with:
+#          github-token: ${{ secrets.github_token }}
+#          parallel-finished: true
