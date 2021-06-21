@@ -91,7 +91,7 @@ export const query = <T, K = void>(
       }
 
       return `${acc}${agg.key(arg)}${parts.shift()}`;
-    }, parts.shift() ?? '');
+    }, parts.shift() as string);
 
     const name = createName(text);
 
@@ -105,12 +105,13 @@ export const query = <T, K = void>(
  *     public: (raw) => ({ ...raw, happy: true }),
  *   },
  *   from: {
- *     register: (name: string) => ({ id: generateRandomString(), name }),
+ *     register: (id: string) => ({ id }),
  *   },
  * });
  *
- * const row = findB.fromRegister('iql'); // row is of type IRawUser
- * const publicUser = findB.toPublic(row); // publicUser.happy === true
+ * const params = findB.fromRegister('iql'); // row is of type IUserParams
+ * const { rows } = await pg.query<QueryResylt<typeof findB>>(findB.compile(params));
+ * const publicUser = findB.toPublic(rows[0]); // publicUser.happy === true
  */
 export const extend = <
   T extends Record<string, unknown[]>,
