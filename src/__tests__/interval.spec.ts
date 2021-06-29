@@ -1,4 +1,4 @@
-import { intervalStringValue, intervalToMilliseconds } from '../index';
+import { intervalStringValue, intervalToMilliseconds } from '..';
 
 import type { IPostgresInterval } from '../interfaces';
 
@@ -10,7 +10,7 @@ describe('postrgres interval', () => {
       milliseconds: 3,
     };
 
-    expect(intervalToMilliseconds(interval)).toStrictEqual(604003);
+    expect(intervalToMilliseconds(interval)).toStrictEqual(604_003);
   });
 
   it('ms2', () => {
@@ -19,7 +19,7 @@ describe('postrgres interval', () => {
       hours: 2,
     };
 
-    expect(intervalToMilliseconds(interval)).toStrictEqual(180000000);
+    expect(intervalToMilliseconds(interval)).toStrictEqual(180_000_000);
   });
 
   it('string', () => {

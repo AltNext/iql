@@ -1,4 +1,4 @@
-import { extend, query } from '../index';
+import { extend, query } from '..';
 
 describe('query', () => {
   it('should accept an array of parameters', () => {

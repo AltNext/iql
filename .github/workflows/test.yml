@@ -33,6 +33,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: yarn install --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+      - name: Type
+        run: yarn type
       - name: Coverage
         run: yarn test --coverage
       - name: Coveralls Parallel

@@ -1,22 +1,13 @@
 import { createHash } from 'crypto';
 
-import type {
-  BuilderInput,
-  IParamAggregator,
-  QueryCompiler,
-  QueryParameters,
-  ValueType,
-} from './interfaces';
+import type { BuilderInput, IParamAggregator, QueryCompiler, QueryParameters, ValueType } from './interfaces';
 
 /**
  * Utility function to generate a consistent query name
  */
-const createName = (queryText: string): string =>
-  createHash('sha256').update(queryText).digest().toString('base64');
+const createName = (queryText: string): string => createHash('sha256').update(queryText).digest().toString('base64');
 
-const createAggregator = <T, U>(
-  params: QueryParameters<QueryCompiler<T, U>>
-): IParamAggregator<T, U> => {
+const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): IParamAggregator<U> => {
   const values: ValueType[] = [];
   const keyMap: Partial<Record<keyof U, string>> = {};
 
@@ -30,17 +21,16 @@ const createAggregator = <T, U>(
     },
     key<K extends keyof U>(target: K) {
       if (!keyMap[target]) {
-        const index = values.push((params[target] as unknown) as ValueType);
+        const index = values.push(params[target] as unknown as ValueType);
 
         keyMap[target] = `$${index}`;
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       return keyMap[target]!;
     },
     values<K extends keyof U>(args: K | ValueType[]) {
-      const items = Array.isArray(args)
-        ? args
-        : ((params[args] as unknown) as ValueType[]);
+      const items = Array.isArray(args) ? args : (params[args] as unknown as ValueType[]);
 
       return items.map((item) => `$${values.push(item)}`).join(',');
     },
@@ -76,6 +66,7 @@ const createAggregator = <T, U>(
  * `;
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 export const query = <T, K = void>(
   template: TemplateStringsArray,
   ...args: BuilderInput<T, K>[]
@@ -85,13 +76,16 @@ export const query = <T, K = void>(
 
     const parts = Array.from(template);
 
-    const text = args.reduce<string>((acc, arg) => {
+    const text = args.reduce((acc, arg) => {
       if (typeof arg === 'function') {
-        return `${acc}${arg(agg, compileValues)}${parts.shift()}`;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return `${acc}${arg(agg, compileValues)}${parts.shift()!}`;
       }
 
-      return `${acc}${agg.key(arg)}${parts.shift()}`;
-    }, parts.shift() as string);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return `${acc}${agg.key(arg)}${parts.shift()!}`;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    }, parts.shift()!);
 
     const name = createName(text);
 
@@ -119,13 +113,13 @@ export const extend = <
   K,
   L,
   M extends Record<string, unknown[]>,
-  N extends Record<string, unknown>
+  N extends Record<string, unknown>,
 >(
   input: QueryCompiler<K, L, M, N>,
   change: {
     from?: { [R in keyof T]: (...args: T[R]) => L };
     to?: { [R in keyof U]: (raw: K) => U[R] };
-  }
+  },
 ): QueryCompiler<K, L, M & T, N & U> =>
   ({
     ...input,
@@ -133,18 +127,18 @@ export const extend = <
       ? Object.entries(change.from).reduce(
           (acc, [from, value]) => ({
             ...acc,
-            [`from${from[0].toUpperCase()}${from.slice(1)}`]: value,
+            [`from${from[0].toUpperCase()}${from.slice(1)}`]: value as (...args: T[keyof T]) => L,
           }),
-          {}
+          {},
         )
       : {}),
     ...(change.to
       ? Object.entries(change.to).reduce(
           (acc, [from, value]) => ({
             ...acc,
-            [`to${from[0].toUpperCase()}${from.slice(1)}`]: value,
+            [`to${from[0].toUpperCase()}${from.slice(1)}`]: value as (raw: K) => U[keyof U],
           }),
-          {}
+          {},
         )
       : {}),
   } as QueryCompiler<K, L, M & T, N & U>);
