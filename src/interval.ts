@@ -36,5 +36,5 @@ export const intervalToMilliseconds = (interval: IPostgresInterval): number => {
  */
 export const intervalStringValue = (interval: IPostgresInterval): string =>
   Object.entries(interval)
-    .map(([key, value]) => `${value} ${key}`)
+    .map(([key, value]) => `${value as number} ${key}`)
     .join(' ');

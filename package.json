@@ -18,11 +18,15 @@
     "clean": "tsc --build --clean",
     "coverage": "jest --coverage",
     "docs": "yarn typedoc --disableSources index.ts",
+    "lint": "eslint --ext .ts . --cache",
     "prepare": "husky install",
     "prerelease": "yarn build",
     "release": "changeset publish",
     "test": "jest --ci",
     "type": "tsc --noEmit --noImplicitAny"
+  },
+  "resolutions": {
+    "prettier": "2.3.2"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.0",
@@ -32,9 +36,11 @@
     "@types/jest": "^26.0.23",
     "@types/pg": "^8.6.0",
     "@jest/types": "^27.0.2",
+    "eslint-config-altnext": "^1.1.2",
     "husky": "^6.0.0",
     "jest": "^27.0.4",
     "jest-junit": "^12.2.0",
+    "lint-staged": "^11.0.0",
     "pg": "^8.6.0",
     "ts-jest": "27.0.3",
     "ts-node": "^10.0.0",
@@ -47,5 +53,10 @@
   "eslintIgnore": [
     "dist",
     "node_modules"
-  ]
+  ],
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --quiet --cache"
+    ]
+  }
 }

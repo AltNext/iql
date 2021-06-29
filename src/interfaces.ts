@@ -14,23 +14,16 @@ export interface IPostgresInterval {
 /**
  * Value types accepted by the pg library
  */
-export type ValueType =
-  | Date
-  | ValueType[]
-  | boolean
-  | number
-  | object
-  | string
-  | null;
+export type ValueType = Date | ValueType[] | boolean | number | object | string | null;
 
 /**
  * The aggregator, used by the query function to parse and manipulate parameters
  */
-export interface IParamAggregator<T, U> {
+export interface IParamAggregator<T> {
   props: ValueType[];
-  key<K extends keyof U>(key: K): string;
+  key<K extends keyof T>(key: K): string;
   value(item: ValueType): string;
-  values<K extends keyof U>(key: K): string;
+  values<K extends keyof T>(key: K): string;
   values(items: ValueType[]): string;
 }
 
@@ -55,7 +48,7 @@ export type BaseQuery<
   T,
   K,
   U extends Record<string, unknown[]> = {},
-  F extends Record<string, unknown> = {}
+  F extends Record<string, unknown> = {},
 > = FromProps<K, U> & ToProps<T, F>;
 
 /**
@@ -65,7 +58,7 @@ export type QueryCompiler<
   Result,
   Params,
   From extends Record<string, unknown[]> = {},
-  To extends Record<string, unknown> = {}
+  To extends Record<string, unknown> = {},
 > = BaseQuery<Result, Params, From, To> & {
   compile(params: Params): QueryConfig<ValueType[]>;
 };
@@ -93,7 +86,4 @@ export type QueryResult<T> = T extends QueryCompiler<infer K, unknown>
  */
 export type BuilderInput<T, U> =
   | keyof QueryParameters<QueryCompiler<T, U>>
-  | ((
-      agg: IParamAggregator<T, U>,
-      values: QueryParameters<QueryCompiler<T, U>>
-    ) => string);
+  | ((agg: IParamAggregator<U>, values: QueryParameters<QueryCompiler<T, U>>) => string);

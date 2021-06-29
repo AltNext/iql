@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true
+  },
+  "exclude": ["**/dist/**/*"],
+  "include": ["src/**/*", "index.ts", "jest.config.ts"]
+}
