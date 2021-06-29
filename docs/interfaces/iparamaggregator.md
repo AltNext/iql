@@ -1,6 +1,6 @@
 [iql](../README.md) / [Exports](../modules.md) / IParamAggregator
 
-# Interface: IParamAggregator<T, U\>
+# Interface: IParamAggregator<T\>
 
 The aggregator, used by the query function to parse and manipulate parameters
 
@@ -9,7 +9,6 @@ The aggregator, used by the query function to parse and manipulate parameters
 | Name |
 | :------ |
 | `T` |
-| `U` |
 
 ## Table of contents
 
