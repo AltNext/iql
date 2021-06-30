@@ -36,7 +36,7 @@
     "@types/jest": "26.0.23",
     "@types/pg": "8.6.0",
     "@jest/types": "27.0.6",
-    "eslint-config-altnext": "1.1.3",
+    "eslint-config-altnext": "1.1.4",
     "husky": "6.0.0",
     "jest": "27.0.6",
     "jest-junit": "12.2.0",
