@@ -2151,10 +2151,10 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-altnext@1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/eslint-config-altnext/-/eslint-config-altnext-1.1.3.tgz#aeca1b4eb040b7daf3e14dc2331c07ab1abdf3c2"
-  integrity sha512-hCr0Bepd2J7fhD+T8QGtOrCe0xdlF32nwU2lfER9c9gwKACiNAr5eapkPX8UlsW0NMciMZzHaac2Oh3Xg79jEQ==
+eslint-config-altnext@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/eslint-config-altnext/-/eslint-config-altnext-1.1.4.tgz#2bee7751f6bcdc3e5ceea290cc379b1f922699d5"
+  integrity sha512-qNhAQhjz55hbOiOJ6720+ZEPn/Wbl5IdsPB2eZTb93v3mKyFcvRvsqbMgu0vPspz/Y7ZQWdweJD1yRmgos4GHw==
   dependencies:
     "@typescript-eslint/eslint-plugin" "4.28.1"
     "@typescript-eslint/parser" "4.28.1"
@@ -2171,7 +2171,7 @@ eslint-config-altnext@1.1.3:
     eslint-plugin-prettier "3.4.0"
     eslint-plugin-react "7.24.0"
     eslint-plugin-react-hooks "4.2.0"
-    eslint-plugin-unicorn "34.0.0"
+    eslint-plugin-unicorn "34.0.1"
     prettier "2.3.2"
 
 eslint-config-prettier@8.3.0:
@@ -2318,10 +2318,10 @@ eslint-plugin-react@7.24.0:
     resolve "^2.0.0-next.3"
     string.prototype.matchall "^4.0.5"
 
-eslint-plugin-unicorn@34.0.0:
-  version "34.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-34.0.0.tgz#59b5319c69369186ead38c5bc1f675414b06678c"
-  integrity sha512-O2S5Y823IymGWjFG1sa+F3zZYa8F9NukNT0qZfsAnLciY9721/kKxAsfSomlFR3o+8OfohytHdVVKGb3sNy7dA==
+eslint-plugin-unicorn@34.0.1:
+  version "34.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-34.0.1.tgz#e31cfaf487591599ff1f1b1e74776cce59dcc3ae"
+  integrity sha512-GUBtRYRhPVOW/GDu6QtOjrneSZxY/MulOT8puJU+47VKCzNmMgS/iHO2gZqoQ7KPMrpNYlebUlvCWy3IR1USVQ==
   dependencies:
     ci-info "^3.2.0"
     clean-regexp "^1.0.0"
