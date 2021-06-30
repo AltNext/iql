@@ -26,19 +26,19 @@ The aggregator, used by the query function to parse and manipulate parameters
 
 ### props
 
-• **props**: [ValueType](../modules.md#valuetype)[]
+• **props**: [`ValueType`](../modules.md#valuetype)[]
 
 ## Methods
 
 ### key
 
-▸ **key**<K\>(`key`): `string`
+▸ **key**<`K`\>(`key`): `string`
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `K` | `K`: `string` \| `number` \| `symbol` |
+| `K` | extends `string` \| `number` \| `symbol` |
 
 #### Parameters
 
@@ -60,7 +60,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `item` | [ValueType](../modules.md#valuetype) |
+| `item` | [`ValueType`](../modules.md#valuetype) |
 
 #### Returns
 
@@ -70,13 +70,13 @@ ___
 
 ### values
 
-▸ **values**<K\>(`key`): `string`
+▸ **values**<`K`\>(`key`): `string`
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `K` | `K`: `string` \| `number` \| `symbol` |
+| `K` | extends `string` \| `number` \| `symbol` |
 
 #### Parameters
 
@@ -94,7 +94,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `items` | [ValueType](../modules.md#valuetype)[] |
+| `items` | [`ValueType`](../modules.md#valuetype)[] |
 
 #### Returns
 
