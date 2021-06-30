@@ -27,7 +27,7 @@
 
 ### QueryCompiler
 
-Ƭ **QueryCompiler**<Result, Params, From, To\>: `BaseQuery`<Result, Params, From, To\> & { `compile`: (`params`: `Params`) => `QueryConfig`<[ValueType](modules.md#valuetype)[]\>  }
+Ƭ **QueryCompiler**<`Result`, `Params`, `From`, `To`\>: `BaseQuery`<`Result`, `Params`, `From`, `To`\> & { `compile`: (`params`: `Params`) => `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>  }
 
 Return type of the query/extend functions
 
@@ -37,14 +37,14 @@ Return type of the query/extend functions
 | :------ | :------ |
 | `Result` | `Result` |
 | `Params` | `Params` |
-| `From` | `From`: `Record`<string, unknown[]\> = {} |
-| `To` | `To`: `Record`<string, unknown\> = {} |
+| `From` | extends `Record`<`string`, `unknown`[]\>{} |
+| `To` | extends `Record`<`string`, `unknown`\>{} |
 
 ___
 
 ### QueryParameters
 
-Ƭ **QueryParameters**<T\>: `T` extends [QueryCompiler](modules.md#querycompiler)<unknown, infer R\> ? `R` : `T` extends `BaseQuery`<unknown, infer S\> ? `S` : `never`
+Ƭ **QueryParameters**<`T`\>: `T` extends [`QueryCompiler`](modules.md#querycompiler)<`unknown`, infer R\> ? `R` : `T` extends `BaseQuery`<`unknown`, infer S\> ? `S` : `never`
 
 Utility type for getting a query's parameters
 
@@ -58,7 +58,7 @@ ___
 
 ### QueryResult
 
-Ƭ **QueryResult**<T\>: `T` extends [QueryCompiler](modules.md#querycompiler)<infer K, unknown\> ? `K` : `T` extends `BaseQuery`<infer R, unknown\> ? `R` : `unknown`
+Ƭ **QueryResult**<`T`\>: `T` extends [`QueryCompiler`](modules.md#querycompiler)<infer K, `unknown`\> ? `K` : `T` extends `BaseQuery`<infer R, `unknown`\> ? `R` : `unknown`
 
 Utility type for getting a query's result row type
 
@@ -72,7 +72,7 @@ ___
 
 ### ValueType
 
-Ƭ **ValueType**: `Date` \| [ValueType](modules.md#valuetype)[] \| `boolean` \| `number` \| `object` \| `string` \| ``null``
+Ƭ **ValueType**: `Date` \| [`ValueType`](modules.md#valuetype)[] \| `boolean` \| `number` \| `object` \| `string` \| ``null``
 
 Value types accepted by the pg library
 
@@ -80,7 +80,7 @@ Value types accepted by the pg library
 
 ### extend
 
-▸ `Const` **extend**<T, U, K, L, M, N\>(`input`, `change`): [QueryCompiler](modules.md#querycompiler)<K, L, `M` & `T`, `N` & `U`\>
+▸ `Const` **extend**<`T`, `U`, `K`, `L`, `M`, `N`\>(`input`, `change`): [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`\>
 
 const findB = extend(findA, {
   to: {
@@ -99,25 +99,25 @@ const publicUser = findB.toPublic(rows[0]); // publicUser.happy === true
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `T`: `Record`<string, unknown[]\> |
-| `U` | `U`: `Record`<string, unknown\> |
+| `T` | extends `Record`<`string`, `unknown`[]\> |
+| `U` | extends `Record`<`string`, `unknown`\> |
 | `K` | `K` |
 | `L` | `L` |
-| `M` | `M`: `Record`<string, unknown[]\> |
-| `N` | `N`: `Record`<string, unknown\> |
+| `M` | extends `Record`<`string`, `unknown`[]\> |
+| `N` | extends `Record`<`string`, `unknown`\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `input` | [QueryCompiler](modules.md#querycompiler)<K, L, M, N\> |
+| `input` | [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M`, `N`\> |
 | `change` | `Object` |
 | `change.from?` | { [R in string \| number \| symbol]: function} |
 | `change.to?` | { [R in string \| number \| symbol]: function} |
 
 #### Returns
 
-[QueryCompiler](modules.md#querycompiler)<K, L, `M` & `T`, `N` & `U`\>
+[`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`\>
 
 ___
 
@@ -131,7 +131,7 @@ Translates Postgres interval object to string
 
 | Name | Type |
 | :------ | :------ |
-| `interval` | [IPostgresInterval](interfaces/ipostgresinterval.md) |
+| `interval` | [`IPostgresInterval`](interfaces/ipostgresinterval.md) |
 
 #### Returns
 
@@ -149,7 +149,7 @@ Translates Postgres intervals to milliseconds
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `interval` | [IPostgresInterval](interfaces/ipostgresinterval.md) | IPostgresInterval to translate |
+| `interval` | [`IPostgresInterval`](interfaces/ipostgresinterval.md) | IPostgresInterval to translate |
 
 #### Returns
 
@@ -159,7 +159,7 @@ ___
 
 ### query
 
-▸ `Const` **query**<T, K\>(`template`, ...`args`): [QueryCompiler](modules.md#querycompiler)<T, K, `Object`, `Object`\>
+▸ `Const` **query**<`T`, `K`\>(`template`, ...`args`): [`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Object`, `Object`\>
 
 ```typescript
 interface IRawUser {
@@ -191,15 +191,15 @@ OR id IN (${(agg) => agg.values('ids')}); -- Same as above
 | Name | Type |
 | :------ | :------ |
 | `T` | `T` |
-| `K` | `K` = `void` |
+| `K` | `void` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `template` | `TemplateStringsArray` |
-| `...args` | `BuilderInput`<T, K\>[] |
+| `...args` | `BuilderInput`<`T`, `K`\>[] |
 
 #### Returns
 
-[QueryCompiler](modules.md#querycompiler)<T, K, `Object`, `Object`\>
+[`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Object`, `Object`\>
