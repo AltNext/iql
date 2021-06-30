@@ -16,6 +16,7 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v2
@@ -44,5 +45,5 @@ jobs:
           commit: 'ci(changesets): version packages'
           publish: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHPR_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
