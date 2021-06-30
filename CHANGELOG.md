@@ -1,5 +1,13 @@
 # iql
 
+## 0.2.1
+
+### Patch Changes
+
+- [#23](https://github.com/AltNext/iql/pull/23) [`c61653a`](https://github.com/AltNext/iql/commit/c61653a1f949d5c9786c152f6556536cebe24f55) Thanks [@roikoren755](https://github.com/roikoren755)! - feat: lint & oss
+
+- [#30](https://github.com/AltNext/iql/pull/30) [`3b8717c`](https://github.com/AltNext/iql/commit/3b8717c6a3c0bd181b1beaee3d72937adfa83903) Thanks [@renovate](https://github.com/apps/renovate)! - docs: re-generate docs
+
 ## 0.2.0
 
 ### Minor Changes
