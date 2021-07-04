@@ -1,5 +1,13 @@
 # iql
 
+## 0.2.2
+
+Version 0.2.1 was not published to NPM, due to a misconfiguration. This version is identical.
+
+### Patch Changes
+
+- [#34](https://github.com/AltNext/iql/pull/34) [`46d3668`](https://github.com/AltNext/iql/commit/46d36689212a86776fb9ca315391226fc0dbfc32) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency husky to v7
+
 ## 0.2.1
 
 ### Patch Changes
