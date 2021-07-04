@@ -37,7 +37,7 @@
     "@types/pg": "8.6.0",
     "@jest/types": "27.0.6",
     "eslint-config-altnext": "1.1.4",
-    "husky": "6.0.0",
+    "husky": "7.0.0",
     "jest": "27.0.6",
     "jest-junit": "12.2.0",
     "lint-staged": "11.0.0",
