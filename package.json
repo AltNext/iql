@@ -33,7 +33,7 @@
     "@changesets/cli": "2.16.0",
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
-    "@types/jest": "26.0.23",
+    "@types/jest": "26.0.24",
     "@types/pg": "8.6.0",
     "@jest/types": "27.0.6",
     "eslint-config-altnext": "1.1.4",
