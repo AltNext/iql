@@ -5,7 +5,7 @@
   Before submitting a pull request, please make sure the following is done:
 
   1. A relevant issue exists and is open. If not, please open an issue first.
-  2. Fork [the repository](https://github.com/altnext/REPOSITORY) and create your branch from `main`.
+  2. Fork [the repository](https://github.com/altnext/iql) and create your branch from `main`.
   3. Run `yarn` in the repository root.
   4. If you've fixed a bug or added code that should be tested, add tests!
   5. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.

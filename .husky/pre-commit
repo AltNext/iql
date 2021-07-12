@@ -2,5 +2,9 @@
 . "$(dirname "$0")/_/husky.sh"
 
 yarn lint-staged
+
 yarn docs
 git add docs/
+
+yarn deduplicate
+git add yarn.lock

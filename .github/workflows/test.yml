@@ -33,6 +33,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: yarn install --frozen-lockfile
+      - name: Deduplicate yarn.lock
+        run: yarn deduplicate --list --fail
       - name: Lint
         run: yarn lint
       - name: Type
