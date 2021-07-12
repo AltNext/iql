@@ -4,8 +4,29 @@ Inline Query Language
 
 This package aims to make SQL-like queries type safe and easy to build dynamically with an expressive API
 
-[![Coverage Status](https://github.com/altnext/iql/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/AltNext/iql/actions/workflows/test.yml?query=branch%3Amain)
+[![Test Status](https://github.com/altnext/iql/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/AltNext/iql/actions/workflows/test.yml?query=branch%3Amain)
 [![Coverage Status](https://coveralls.io/repos/github/AltNext/iql/badge.svg?branch=main)](https://coveralls.io/github/AltNext/iql?branch=main)
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=AltNext_iql&metric=bugs)](https://sonarcloud.io/dashboard?id=AltNext_iql)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=AltNext_iql&metric=code_smells)](https://sonarcloud.io/dashboard?id=AltNext_iql)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AltNext_iql&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=AltNext_iql)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=AltNext_iql&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=AltNext_iql)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=AltNext_iql&metric=security_rating)](https://sonarcloud.io/dashboard?id=AltNext_iql)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=AltNext_iql&metric=sqale_index)](https://sonarcloud.io/dashboard?id=AltNext_iql)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=AltNext_iql&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=AltNext_iql)
+
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/altnext/iql)](https://app.snyk.io/org/altnext/project/https://app.snyk.io/org/altnext/project/615eb00b-5713-4b96-b95b-634bf66f43db)
+
+[![npm](https://img.shields.io/npm/v/iql)](https://www.npmjs.com/package/iql)
+[![NPM](https://img.shields.io/npm/l/iql)](https://www.npmjs.com/package/iql)
+[![npm](https://img.shields.io/npm/dm/iql)](https://www.npmjs.com/package/iql)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/iql)](https://www.npmjs.com/package/iql)
+
+[![GitHub issues](https://img.shields.io/github/issues-raw/altnext/iql)](https://www.github.com/altnext/iql)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/altnext/iql)](https://www.github.com/altnext/iql)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/altnext/iql)](https://www.github.com/altnext/iql)
+[![Lines of code](https://img.shields.io/tokei/lines/github/altnext/iql)](https://www.github.com/altnext/iql)
+[![GitHub top language](https://img.shields.io/github/languages/top/altnext/iql)](https://www.github.com/altnext/iql)
 
 ```typescript
 import { Client } from 'pg';

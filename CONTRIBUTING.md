@@ -100,11 +100,11 @@ project:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/<repo-name>
+   git clone https://github.com/<your-username>/iql
    # Navigate to the newly cloned directory
-   cd <repo-name>
+   cd iql
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/altnext/<repo-name>
+   git remote add upstream https://github.com/altnext/iql
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
