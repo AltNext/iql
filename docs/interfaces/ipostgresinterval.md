@@ -8,11 +8,11 @@ Postgres internal representation of intervals
 
 ### Properties
 
-- [days](ipostgresinterval.md#days)
-- [hours](ipostgresinterval.md#hours)
-- [milliseconds](ipostgresinterval.md#milliseconds)
-- [minutes](ipostgresinterval.md#minutes)
-- [seconds](ipostgresinterval.md#seconds)
+- [days](IPostgresInterval.md#days)
+- [hours](IPostgresInterval.md#hours)
+- [milliseconds](IPostgresInterval.md#milliseconds)
+- [minutes](IPostgresInterval.md#minutes)
+- [seconds](IPostgresInterval.md#seconds)
 
 ## Properties
 

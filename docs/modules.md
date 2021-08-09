@@ -6,8 +6,8 @@
 
 ### Interfaces
 
-- [IParamAggregator](interfaces/iparamaggregator.md)
-- [IPostgresInterval](interfaces/ipostgresinterval.md)
+- [IParamAggregator](interfaces/IParamAggregator.md)
+- [IPostgresInterval](interfaces/IPostgresInterval.md)
 
 ### Type aliases
 
@@ -131,7 +131,7 @@ Translates Postgres interval object to string
 
 | Name | Type |
 | :------ | :------ |
-| `interval` | [`IPostgresInterval`](interfaces/ipostgresinterval.md) |
+| `interval` | [`IPostgresInterval`](interfaces/IPostgresInterval.md) |
 
 #### Returns
 
@@ -149,7 +149,7 @@ Translates Postgres intervals to milliseconds
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `interval` | [`IPostgresInterval`](interfaces/ipostgresinterval.md) | IPostgresInterval to translate |
+| `interval` | [`IPostgresInterval`](interfaces/IPostgresInterval.md) | IPostgresInterval to translate |
 
 #### Returns
 
