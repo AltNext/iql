@@ -13,6 +13,18 @@
     "type": "git",
     "url": "ssh://git@github.com/altnext/iql.git"
   },
+  "bugs": {
+    "url": "https://github.com/Altnext/Altnext/issues"
+  },
+  "homepage": "https://altnext.com",
+  "keywords": [
+    "sql",
+    "postgresql",
+    "postgres",
+    "no orm",
+    "nodejs",
+    "typescript"
+  ],
   "scripts": {
     "build": "tsc",
     "clean": "tsc --build --clean",

@@ -14,13 +14,13 @@ The aggregator, used by the query function to parse and manipulate parameters
 
 ### Properties
 
-- [props](iparamaggregator.md#props)
+- [props](IParamAggregator.md#props)
 
 ### Methods
 
-- [key](iparamaggregator.md#key)
-- [value](iparamaggregator.md#value)
-- [values](iparamaggregator.md#values)
+- [key](IParamAggregator.md#key)
+- [value](IParamAggregator.md#value)
+- [values](IParamAggregator.md#values)
 
 ## Properties
 
