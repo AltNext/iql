@@ -39,7 +39,7 @@
     "type": "tsc --noEmit --noImplicitAny"
   },
   "resolutions": {
-    "prettier": "2.3.2"
+    "prettier": "2.4.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.1",
