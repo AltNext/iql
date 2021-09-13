@@ -1,6 +1,5 @@
 import { createHash } from 'crypto';
-
-import type { BuilderInput, IParamAggregator, QueryCompiler, QueryParameters, ValueType } from './interfaces';
+import type { BuilderInput, IParamAggregator, QueryCompiler, QueryParameters, ValueType } from '../interfaces';
 
 /**
  * Utility function to generate a consistent query name
@@ -92,53 +91,3 @@ export const query = <T, K = void>(
     return { name, text, values: agg.props };
   },
 });
-
-/**
- * const findB = extend(findA, {
- *   to: {
- *     public: (raw) => ({ ...raw, happy: true }),
- *   },
- *   from: {
- *     register: (id: string) => ({ id }),
- *   },
- * });
- *
- * const params = findB.fromRegister('iql'); // row is of type IUserParams
- * const { rows } = await pg.query<QueryResylt<typeof findB>>(findB.compile(params));
- * const publicUser = findB.toPublic(rows[0]); // publicUser.happy === true
- */
-export const extend = <
-  T extends Record<string, unknown[]>,
-  U extends Record<string, unknown>,
-  K,
-  L,
-  M extends Record<string, unknown[]>,
-  N extends Record<string, unknown>,
->(
-  input: QueryCompiler<K, L, M, N>,
-  change: {
-    from?: { [R in keyof T]: (...args: T[R]) => L };
-    to?: { [R in keyof U]: (raw: K) => U[R] };
-  },
-): QueryCompiler<K, L, M & T, N & U> =>
-  ({
-    ...input,
-    ...(change.from
-      ? Object.entries(change.from).reduce(
-          (acc, [from, value]) => ({
-            ...acc,
-            [`from${from[0].toUpperCase()}${from.slice(1)}`]: value as (...args: T[keyof T]) => L,
-          }),
-          {},
-        )
-      : {}),
-    ...(change.to
-      ? Object.entries(change.to).reduce(
-          (acc, [from, value]) => ({
-            ...acc,
-            [`to${from[0].toUpperCase()}${from.slice(1)}`]: value as (raw: K) => U[keyof U],
-          }),
-          {},
-        )
-      : {}),
-  } as QueryCompiler<K, L, M & T, N & U>);

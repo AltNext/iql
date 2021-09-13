@@ -1,8 +1,8 @@
-import { extend, query } from '..';
+import { extend, pg } from '../..';
 
-describe('query', () => {
+describe('pg', () => {
   it('should accept an array of parameters', () => {
-    const findMe = query<{ id: string }, [string]>`
+    const findMe = pg<{ id: string }, [string]>`
       SELECT * FROM public.foo
         WHERE id = $1::TEXT
     `;
@@ -22,7 +22,7 @@ describe('query', () => {
   });
 
   it('should access key of parameters', () => {
-    const findMe = query<{ id: string }, { id: string }>`
+    const findMe = pg<{ id: string }, { id: string }>`
       SELECT * FROM public.foo
         WHERE id = ${'id'}::TEXT
     `;
@@ -43,7 +43,7 @@ describe('query', () => {
 
   it('should add .value to parameters', () => {
     const id = 'asdasda';
-    const findMe = query<{ id: string }>`
+    const findMe = pg<{ id: string }>`
       SELECT * FROM public.foo
         WHERE id = ${(agg) => agg.value(id)}::TEXT
     `;
@@ -61,7 +61,7 @@ describe('query', () => {
   });
 
   it('should use same parameter for multiple calls to same key', () => {
-    const findMe = query<{ id: string }, { id: string }>`
+    const findMe = pg<{ id: string }, { id: string }>`
       SELECT * FROM public.foo
         WHERE id = ${'id'}::TEXT
         OR id = ${'id'}::TEXT
@@ -83,7 +83,7 @@ describe('query', () => {
   });
 
   it('should compile to same config with multiple calls', () => {
-    const findMe = query<{ id: string }, { id: string }>`
+    const findMe = pg<{ id: string }, { id: string }>`
       SELECT * FROM public.foo
         WHERE id = ${'id'}::TEXT
     `;
@@ -105,7 +105,7 @@ describe('query', () => {
   });
 
   it('should access multiple keys', () => {
-    const findMe = query<{ id: string }, { bar: string; id: string }>`
+    const findMe = pg<{ id: string }, { bar: string; id: string }>`
       SELECT id FROM public.foo
         WHERE id = ${'id'}::TEXT
           AND foo = ${'bar'}::TEXT
@@ -128,7 +128,7 @@ describe('query', () => {
   });
 
   it('should ignore order of params', () => {
-    const findMe = query<{ id: string }, { bar: string; id: string }>`
+    const findMe = pg<{ id: string }, { bar: string; id: string }>`
       SELECT id FROM public.foo
         WHERE id = ${'id'}::TEXT
           AND foo = ${'bar'}::TEXT
@@ -151,7 +151,7 @@ describe('query', () => {
   });
 
   it('should parse array in .values', () => {
-    const findMe = query<{ id: string }, string[]>`
+    const findMe = pg<{ id: string }, string[]>`
       SELECT id FROM public.foo
         WHERE id in (${(agg, items) => agg.values(items)})
     `;
@@ -171,7 +171,7 @@ describe('query', () => {
   });
 
   it('should access array by key in .values', () => {
-    const findMe = query<{ id: string }, { id: string; tags: string[] }>`
+    const findMe = pg<{ id: string }, { id: string; tags: string[] }>`
       SELECT id FROM public.foo
         WHERE id = ${'id'}
         AND tags in (${(agg) => agg.values('tags')})
@@ -194,7 +194,7 @@ describe('query', () => {
   });
 
   it('should work with no helpers with extend', () => {
-    const findMe = query<{ id: string }, string[]>`
+    const findMe = pg<{ id: string }, string[]>`
         SELECT id FROM public.foo
         WHERE id in (${(agg, values) => agg.values(values)})
     `;
@@ -205,7 +205,7 @@ describe('query', () => {
   });
 
   it('should add helpers with extend', () => {
-    const findMe = query<{ id: string }, string[]>`
+    const findMe = pg<{ id: string }, string[]>`
       SELECT id FROM public.foo
         WHERE id in (${(agg, values) => agg.values(values)})
     `;
@@ -221,8 +221,8 @@ describe('query', () => {
     expect(findMeExtended.fromId(result)).toStrictEqual([result.id]);
   });
 
-  it('should create diiferent query names', () => {
-    const findMe = query<unknown, { a: number[]; b: number[] }>`
+  it('should create different query names', () => {
+    const findMe = pg<unknown, { a: number[]; b: number[] }>`
       SELECT * FROM public.foo
         WHERE a in (${(agg, { a }) => agg.values(a)})
         AND b in (${(agg, { b }) => agg.values(b)});
@@ -235,7 +235,7 @@ describe('query', () => {
   });
 
   it('should not fail for empty query', () => {
-    const findMe = query``;
+    const findMe = pg``;
 
     expect(findMe.compile()).toStrictEqual({
       name: expect.stringContaining(''),
