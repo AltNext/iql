@@ -1,4 +1,5 @@
 import { createHash } from 'crypto';
+
 import type { BuilderInput, IParamAggregator, QueryCompiler, QueryParameters, ValueType } from '../interfaces';
 
 /**
