@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+### References
+
+- [query](modules.md#query)
+
 ### Interfaces
 
 - [IParamAggregator](interfaces/IParamAggregator.md)
@@ -21,13 +25,19 @@
 - [extend](modules.md#extend)
 - [intervalStringValue](modules.md#intervalstringvalue)
 - [intervalToMilliseconds](modules.md#intervaltomilliseconds)
-- [query](modules.md#query)
+- [pg](modules.md#pg)
+
+## References
+
+### query
+
+Renames and exports: [pg](modules.md#pg)
 
 ## Type aliases
 
 ### QueryCompiler
 
-Ƭ **QueryCompiler**<`Result`, `Params`, `From`, `To`\>: `BaseQuery`<`Result`, `Params`, `From`, `To`\> & { `compile`: (`params`: `Params`) => `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>  }
+Ƭ **QueryCompiler**<`Result`, `Params`, `From`, `To`, `Compiled`\>: `BaseQuery`<`Result`, `Params`, `From`, `To`\> & { `compile`: (`params`: `Params`) => `Compiled`  }
 
 Return type of the query/extend functions
 
@@ -39,6 +49,7 @@ Return type of the query/extend functions
 | `Params` | `Params` |
 | `From` | extends `Record`<`string`, `unknown`[]\>{} |
 | `To` | extends `Record`<`string`, `unknown`\>{} |
+| `Compiled` | `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\> |
 
 ___
 
@@ -80,7 +91,7 @@ Value types accepted by the pg library
 
 ### extend
 
-▸ `Const` **extend**<`T`, `U`, `K`, `L`, `M`, `N`\>(`input`, `change`): [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`\>
+▸ `Const` **extend**<`T`, `U`, `K`, `L`, `M`, `N`\>(`input`, `change`): [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\>
 
 const findB = extend(findA, {
   to: {
@@ -110,14 +121,14 @@ const publicUser = findB.toPublic(rows[0]); // publicUser.happy === true
 
 | Name | Type |
 | :------ | :------ |
-| `input` | [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M`, `N`\> |
+| `input` | [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M`, `N`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\> |
 | `change` | `Object` |
 | `change.from?` | { [R in string \| number \| symbol]: function} |
 | `change.to?` | { [R in string \| number \| symbol]: function} |
 
 #### Returns
 
-[`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`\>
+[`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\>
 
 ___
 
@@ -157,9 +168,9 @@ Translates Postgres intervals to milliseconds
 
 ___
 
-### query
+### pg
 
-▸ `Const` **query**<`T`, `K`\>(`template`, ...`args`): [`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Object`, `Object`\>
+▸ `Const` **pg**<`T`, `K`\>(`template`, ...`args`): [`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Object`, `Object`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\>
 
 ```typescript
 interface IRawUser {
@@ -202,4 +213,4 @@ OR id IN (${(agg) => agg.values('ids')}); -- Same as above
 
 #### Returns
 
-[`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Object`, `Object`\>
+[`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Object`, `Object`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\>

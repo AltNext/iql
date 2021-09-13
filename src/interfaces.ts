@@ -1,17 +1,6 @@
 import type { QueryConfig } from 'pg';
 
 /**
- * Postgres internal representation of intervals
- */
-export interface IPostgresInterval {
-  days?: number;
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
-  milliseconds?: number;
-}
-
-/**
  * Value types accepted by the pg library
  */
 export type ValueType = Date | ValueType[] | boolean | number | object | string | null;
@@ -59,8 +48,9 @@ export type QueryCompiler<
   Params,
   From extends Record<string, unknown[]> = {},
   To extends Record<string, unknown> = {},
+  Compiled = QueryConfig<ValueType[]>,
 > = BaseQuery<Result, Params, From, To> & {
-  compile(params: Params): QueryConfig<ValueType[]>;
+  compile(params: Params): Compiled;
 };
 
 /**
