@@ -5,7 +5,7 @@
     "allowJs": true,
     "declaration": true,
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "preserveSymlinks": true,

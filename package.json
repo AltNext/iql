@@ -36,7 +36,7 @@
     "prerelease": "yarn build",
     "release": "changeset publish",
     "test": "jest --ci",
-    "type": "tsc --noEmit --noImplicitAny"
+    "type": "tsc --noEmit"
   },
   "resolutions": {
     "prettier": "2.4.0"

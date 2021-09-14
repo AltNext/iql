@@ -13,7 +13,7 @@ const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): I
     // eslint-disable-next-line no-plusplus
     let key = `param_${index++}`;
 
-    while (!Array.isArray(params) && (params?.[key] || params?.[key.split('_')[1]])) {
+    while (!Array.isArray(params) && (params?.[key as keyof U] || params?.[key.split('_')[1] as keyof U])) {
       // eslint-disable-next-line no-plusplus
       key = `param_${index++}`;
     }
