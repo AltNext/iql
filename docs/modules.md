@@ -112,10 +112,10 @@ WHERE id = ${'id'}
 OR id = ${(agg) => agg.key('id')}
 -- OR id = @id
 OR id = ${(agg, { id }) => agg.value(id)} -- This creates a new parameter each time it is called
--- OR id = @param_1
+-- OR id = @param_0
 OR id IN (${(agg, { ids }) => agg.values(ids)}); -- Creates parameters for each member of passed value, each time it is called.
 OR id IN (${(agg) => agg.values('ids')}); -- Same as above
--- OR id IN (@param_2, @param_3, ..., @param_N);
+-- OR id IN (@param_1, @param_2, ..., @param_N);
 `;
 ```
 
