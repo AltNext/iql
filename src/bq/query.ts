@@ -8,12 +8,12 @@ import { generateQuery } from '../query-generator';
  */
 const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): IParamAggregator<U, false> => {
   const values: Record<string, ValueType> = {};
-  let index = 0;
+  let index = Array.isArray(params) ? params.length : 0;
   const addParameter = (param: ValueType): `@${string}` => {
     // eslint-disable-next-line no-plusplus
     let key = `param_${index++}`;
 
-    while (!Array.isArray(params) && params?.[key]) {
+    while (!Array.isArray(params) && (params?.[key] || params?.[key.split('_')[1]])) {
       // eslint-disable-next-line no-plusplus
       key = `param_${index++}`;
     }
@@ -25,7 +25,7 @@ const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): I
 
   return {
     get props() {
-      if (Array.isArray(params) && Object.entries(values).length <= params.length) {
+      if (Array.isArray(params) && Object.entries(values).length === 0) {
         return params.reduce<Record<string, ValueType>>(
           (acc, param: ValueType, i) => ({ ...acc, [`param_${i}`]: param }),
           {},
@@ -35,7 +35,10 @@ const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): I
       return values;
     },
     key<K extends keyof U>(target: K) {
-      const key = target as string;
+      const key =
+        typeof target === 'number' || parseInt(target as string, 10).toString() === target
+          ? `param_${target as string}`
+          : (target as string);
 
       if (!values[key]) {
         values[key] = params[target] as unknown as ValueType;

@@ -159,9 +159,9 @@ describe('bq', () => {
     expect(q).toStrictEqual({
       query: `
       SELECT id FROM \`public.foo\`
-        WHERE id in (@param_0,@param_1,@param_2,@param_3)
+        WHERE id in (@param_4,@param_5,@param_6,@param_7)
     `,
-      params: getParamsFromValues(values),
+      params: getParamsFromValues(values, values.length),
     });
   });
 
@@ -268,6 +268,30 @@ describe('bq', () => {
     `,
       // eslint-disable-next-line @typescript-eslint/naming-convention
       params: { ...getParamsFromValues([param_0], 1), param_0 },
+    });
+  });
+
+  it('should work with arrays and manual params', () => {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const param_0 = 'test';
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const param_1 = 't';
+    const findMe = bq<{}, [string]>`
+      SELECT * FROM \`public.foo\`
+        WHERE id = ${(agg) => agg.value(param_1)}
+        OR id = ${0};
+    `;
+
+    const q = findMe.compile([param_0]);
+
+    expect(q).toStrictEqual({
+      query: `
+      SELECT * FROM \`public.foo\`
+        WHERE id = @param_1
+        OR id = @param_0;
+    `,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      params: { ...getParamsFromValues([param_0]), param_1 },
     });
   });
 });
