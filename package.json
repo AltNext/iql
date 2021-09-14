@@ -1,6 +1,6 @@
 {
   "name": "iql",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "IQL - Inline Query Language",
   "main": "./index.js",
   "types": "./index.d.ts",
