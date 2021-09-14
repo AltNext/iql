@@ -1,4 +1,4 @@
-import { createHash } from 'crypto';
+import type { Query } from '@google-cloud/bigquery';
 
 import type { BuilderInput, IParamAggregator, QueryCompiler, QueryParameters, ValueType } from '../interfaces';
 import { generateQuery } from '../query-generator';
@@ -6,30 +6,42 @@ import { generateQuery } from '../query-generator';
 /**
  * Utility function to generate a consistent query name
  */
-const createName = (queryText: string): string => createHash('sha256').update(queryText).digest().toString('base64');
+const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): IParamAggregator<U, false> => {
+  const values: Record<string, ValueType> = {};
+  let index = 0;
+  const addParameter = (param: ValueType): `@${string}` => {
+    // eslint-disable-next-line no-plusplus
+    let key = `param_${index++}`;
 
-const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): IParamAggregator<U> => {
-  const values: ValueType[] = [];
-  const keyMap: Partial<Record<keyof U, string>> = {};
-  const addParameter = (param: ValueType): `$${number}` => `$${values.push(param)}`;
+    while (!Array.isArray(params) && params?.[key]) {
+      // eslint-disable-next-line no-plusplus
+      key = `param_${index++}`;
+    }
+
+    values[key] = param;
+
+    return `@${key}`;
+  };
 
   return {
     get props() {
-      if (Array.isArray(params) && values.length <= params.length) {
-        return params;
+      if (Array.isArray(params) && Object.entries(values).length <= params.length) {
+        return params.reduce<Record<string, ValueType>>(
+          (acc, param: ValueType, i) => ({ ...acc, [`param_${i}`]: param }),
+          {},
+        );
       }
 
       return values;
     },
     key<K extends keyof U>(target: K) {
-      if (!keyMap[target]) {
-        const index = values.push(params[target] as unknown as ValueType);
+      const key = target as string;
 
-        keyMap[target] = `$${index}`;
+      if (!values[key]) {
+        values[key] = params[target] as unknown as ValueType;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return keyMap[target]!;
+      return `@${key}`;
     },
     values<K extends keyof U>(args: K | ValueType[]) {
       const items = Array.isArray(args) ? args : (params[args] as unknown as ValueType[]);
@@ -48,38 +60,34 @@ const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): I
  *  id: string;
  *  name: string;
  * }
-
+ *
  * interface IUserParams {
  *  id: string;
  *  ids: string[] | string;
  * }
-
+ *
  * const findA = query<IRawUser, IUserParams>`
- * SELECT id, name FROM public.users
+ * SELECT id, name FROM \`public.users\`
  * WHERE id = ${'id'}
- * -- WHERE id = $1
+ * -- WHERE id = @id
  * OR id = ${(agg) => agg.key('id')}
- * -- OR id = $1
+ * -- OR id = @id
  * OR id = ${(agg, { id }) => agg.value(id)} -- This creates a new parameter each time it is called
- * -- OR id = $2
+ * -- OR id = @param_1
  * OR id IN (${(agg, { ids }) => agg.values(ids)}); -- Creates parameters for each member of passed value, each time it is called.
  * OR id IN (${(agg) => agg.values('ids')}); -- Same as above
- * -- OR id IN ($3, $4, ..., $N);
+ * -- OR id IN (@param_2, @param_3, ..., @param_N);
  * `;
  * ```
  */
 // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 export const query = <T, K = void>(
   template: TemplateStringsArray,
-  ...args: BuilderInput<T, K>[]
-): QueryCompiler<T, K> => ({
+  ...args: BuilderInput<T, K, false>[]
+): QueryCompiler<T, K, Record<string, never>, Record<string, never>, Query> => ({
   compile(compileValues) {
     const agg = createAggregator<T, K>(compileValues);
 
-    const text = generateQuery(template, agg, compileValues, args);
-
-    const name = createName(text);
-
-    return { name, text, values: agg.props };
+    return { query: generateQuery(template, agg, compileValues, args), params: agg.props };
   },
 });

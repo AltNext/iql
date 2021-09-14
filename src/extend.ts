@@ -1,4 +1,5 @@
-import type { QueryCompiler } from './interfaces';
+import type { QueryCompiler, ValueType } from './interfaces';
+import type { QueryConfig } from 'pg';
 
 /**
  * const findB = extend(findA, {
@@ -21,13 +22,14 @@ export const extend = <
   L,
   M extends Record<string, unknown[]>,
   N extends Record<string, unknown>,
+  Compiled = QueryConfig<ValueType[]>,
 >(
-  input: QueryCompiler<K, L, M, N>,
+  input: QueryCompiler<K, L, M, N, Compiled>,
   change: {
     from?: { [R in keyof T]: (...args: T[R]) => L };
     to?: { [R in keyof U]: (raw: K) => U[R] };
   },
-): QueryCompiler<K, L, M & T, N & U> =>
+): QueryCompiler<K, L, M & T, N & U, Compiled> =>
   ({
     ...input,
     ...(change.from
@@ -48,4 +50,4 @@ export const extend = <
           {},
         )
       : {}),
-  } as QueryCompiler<K, L, M & T, N & U>);
+  } as QueryCompiler<K, L, M & T, N & U, Compiled>);
