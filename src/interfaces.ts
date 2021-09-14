@@ -8,8 +8,8 @@ export type ValueType = Date | ValueType[] | boolean | number | object | string 
 /**
  * The aggregator, used by the query function to parse and manipulate parameters
  */
-export interface IParamAggregator<T> {
-  props: ValueType[];
+export interface IParamAggregator<T, PropsArray extends boolean = true> {
+  props: PropsArray extends true ? ValueType[] : Record<string, ValueType>;
   key<K extends keyof T>(key: K): string;
   value(item: ValueType): string;
   values<K extends keyof T>(key: K): string;
@@ -74,6 +74,6 @@ export type QueryResult<T> = T extends QueryCompiler<infer K, unknown>
 /**
  * The type of the parameters passed into the TemplateStringsArray when calling the query function
  */
-export type BuilderInput<T, U> =
+export type BuilderInput<T, U, K extends boolean = true> =
   | keyof QueryParameters<QueryCompiler<T, U>>
-  | ((agg: IParamAggregator<U>, values: QueryParameters<QueryCompiler<T, U>>) => string);
+  | ((agg: IParamAggregator<U, K>, values: QueryParameters<QueryCompiler<T, U>>) => string);

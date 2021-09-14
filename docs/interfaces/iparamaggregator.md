@@ -1,14 +1,15 @@
 [iql](../README.md) / [Exports](../modules.md) / IParamAggregator
 
-# Interface: IParamAggregator<T\>
+# Interface: IParamAggregator<T, PropsArray\>
 
 The aggregator, used by the query function to parse and manipulate parameters
 
 ## Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `PropsArray` | extends `boolean```true`` |
 
 ## Table of contents
 
@@ -26,7 +27,7 @@ The aggregator, used by the query function to parse and manipulate parameters
 
 ### props
 
-• **props**: [`ValueType`](../modules.md#valuetype)[]
+• **props**: `PropsArray` extends ``true`` ? [`ValueType`](../modules.md#valuetype)[] : `Record`<`string`, [`ValueType`](../modules.md#valuetype)\>
 
 ## Methods
 

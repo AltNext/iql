@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 
 import type { BuilderInput, IParamAggregator, QueryCompiler, QueryParameters, ValueType } from '../interfaces';
+import { generateQuery } from '../query-generator';
 
 /**
  * Utility function to generate a consistent query name
@@ -10,6 +11,7 @@ const createName = (queryText: string): string => createHash('sha256').update(qu
 const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): IParamAggregator<U> => {
   const values: ValueType[] = [];
   const keyMap: Partial<Record<keyof U, string>> = {};
+  const addParameter = (param: ValueType): `$${number}` => `$${values.push(param)}`;
 
   return {
     get props() {
@@ -32,10 +34,10 @@ const createAggregator = <T, U>(params: QueryParameters<QueryCompiler<T, U>>): I
     values<K extends keyof U>(args: K | ValueType[]) {
       const items = Array.isArray(args) ? args : (params[args] as unknown as ValueType[]);
 
-      return items.map((item) => `$${values.push(item)}`).join(',');
+      return items.map((item) => addParameter(item)).join(',');
     },
     value(item) {
-      return `$${values.push(item)}`;
+      return addParameter(item);
     },
   };
 };
@@ -74,18 +76,7 @@ export const query = <T, K = void>(
   compile(compileValues) {
     const agg = createAggregator<T, K>(compileValues);
 
-    const parts = Array.from(template);
-
-    const text = args.reduce((acc, arg) => {
-      if (typeof arg === 'function') {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        return `${acc}${arg(agg, compileValues)}${parts.shift()!}`;
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return `${acc}${agg.key(arg)}${parts.shift()!}`;
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    }, parts.shift()!);
+    const text = generateQuery(template, agg, compileValues, args);
 
     const name = createName(text);
 

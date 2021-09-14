@@ -22,6 +22,7 @@
 
 ### Functions
 
+- [bq](modules.md#bq)
 - [extend](modules.md#extend)
 - [intervalStringValue](modules.md#intervalstringvalue)
 - [intervalToMilliseconds](modules.md#intervaltomilliseconds)
@@ -89,9 +90,58 @@ Value types accepted by the pg library
 
 ## Functions
 
+### bq
+
+▸ `Const` **bq**<`T`, `K`\>(`template`, ...`args`): [`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Record`<`string`, `never`\>, `Record`<`string`, `never`\>, `Query`\>
+
+```typescript
+interface IRawUser {
+ id: string;
+ name: string;
+}
+
+interface IUserParams {
+ id: string;
+ ids: string[] | string;
+}
+
+const findA = query<IRawUser, IUserParams>`
+SELECT id, name FROM \`public.users\`
+WHERE id = ${'id'}
+-- WHERE id = @id
+OR id = ${(agg) => agg.key('id')}
+-- OR id = @id
+OR id = ${(agg, { id }) => agg.value(id)} -- This creates a new parameter each time it is called
+-- OR id = @param_0
+OR id IN (${(agg, { ids }) => agg.values(ids)}); -- Creates parameters for each member of passed value, each time it is called.
+OR id IN (${(agg) => agg.values('ids')}); -- Same as above
+-- OR id IN (@param_1, @param_2, ..., @param_N);
+`;
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `K` | `void` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `template` | `TemplateStringsArray` |
+| `...args` | `BuilderInput`<`T`, `K`, ``false``\>[] |
+
+#### Returns
+
+[`QueryCompiler`](modules.md#querycompiler)<`T`, `K`, `Record`<`string`, `never`\>, `Record`<`string`, `never`\>, `Query`\>
+
+___
+
 ### extend
 
-▸ `Const` **extend**<`T`, `U`, `K`, `L`, `M`, `N`\>(`input`, `change`): [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\>
+▸ `Const` **extend**<`T`, `U`, `K`, `L`, `M`, `N`, `Compiled`\>(`input`, `change`): [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`, `Compiled`\>
 
 const findB = extend(findA, {
   to: {
@@ -116,19 +166,20 @@ const publicUser = findB.toPublic(rows[0]); // publicUser.happy === true
 | `L` | `L` |
 | `M` | extends `Record`<`string`, `unknown`[]\> |
 | `N` | extends `Record`<`string`, `unknown`\> |
+| `Compiled` | `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `input` | [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M`, `N`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\> |
+| `input` | [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M`, `N`, `Compiled`\> |
 | `change` | `Object` |
 | `change.from?` | { [R in string \| number \| symbol]: function} |
 | `change.to?` | { [R in string \| number \| symbol]: function} |
 
 #### Returns
 
-[`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`, `QueryConfig`<[`ValueType`](modules.md#valuetype)[]\>\>
+[`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M` & `T`, `N` & `U`, `Compiled`\>
 
 ___
 
@@ -209,7 +260,7 @@ OR id IN (${(agg) => agg.values('ids')}); -- Same as above
 | Name | Type |
 | :------ | :------ |
 | `template` | `TemplateStringsArray` |
-| `...args` | `BuilderInput`<`T`, `K`\>[] |
+| `...args` | `BuilderInput`<`T`, `K`, ``true``\>[] |
 
 #### Returns
 
