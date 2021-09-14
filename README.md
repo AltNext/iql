@@ -63,3 +63,10 @@ const result = await pg.query<QueryResult<typeof findA>>(findA.compile({ id: '6'
 // row is of type IRawUser
 result.rows.forEach((row) => {});
 ```
+
+### Supported query executors
+
+| Component | Query executors | Notes |
+| :------ | :------ | :------ |
+| `pg` | `pg` | Used as input to the `{Pool,Client}#query` method. Also exported as `query` for backwards compatibility. |
+| `bq` | `@google-cloud/bigquery` | Used as input to the `BigQuery#createQueryJob` method. |
