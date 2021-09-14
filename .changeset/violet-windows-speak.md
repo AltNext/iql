@@ -2,4 +2,4 @@
 'iql': minor
 ---
 
-chore: add `@google-cloud/bigquery` support
+feature: add `@google-cloud/bigquery` support
