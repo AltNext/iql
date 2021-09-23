@@ -53,7 +53,7 @@
     "eslint-config-altnext": "1.2.5",
     "husky": "7.0.2",
     "jest": "27.2.1",
-    "jest-junit": "12.2.0",
+    "jest-junit": "12.3.0",
     "lint-staged": "11.1.2",
     "pg": "8.7.1",
     "ts-jest": "27.0.5",
