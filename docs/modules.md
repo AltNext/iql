@@ -15,9 +15,13 @@
 
 ### Type aliases
 
+- [BaseQuery](modules.md#basequery)
+- [BuilderInput](modules.md#builderinput)
+- [FromProps](modules.md#fromprops)
 - [QueryCompiler](modules.md#querycompiler)
 - [QueryParameters](modules.md#queryparameters)
 - [QueryResult](modules.md#queryresult)
+- [ToProps](modules.md#toprops)
 - [ValueType](modules.md#valuetype)
 
 ### Functions
@@ -32,13 +36,61 @@
 
 ### query
 
-Renames and exports: [pg](modules.md#pg)
+• **query**: `Object`
 
 ## Type aliases
 
+### BaseQuery
+
+Ƭ **BaseQuery**<`T`, `K`, `U`, `F`\>: [`FromProps`](modules.md#fromprops)<`K`, `U`\> & [`ToProps`](modules.md#toprops)<`T`, `F`\>
+
+Utility type, containing basic from* and to* helper functions
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `K` | `K` |
+| `U` | extends `Record`<`string`, `unknown`[]\>{} |
+| `F` | extends `Record`<`string`, `unknown`\>{} |
+
+___
+
+### BuilderInput
+
+Ƭ **BuilderInput**<`T`, `U`, `K`\>: keyof [`QueryParameters`](modules.md#queryparameters)<[`QueryCompiler`](modules.md#querycompiler)<`T`, `U`\>\> \| (`agg`: [`IParamAggregator`](interfaces/IParamAggregator.md)<`U`, `K`\>, `values`: [`QueryParameters`](modules.md#queryparameters)<[`QueryCompiler`](modules.md#querycompiler)<`T`, `U`\>\>) => `string`
+
+The type of the parameters passed into the TemplateStringsArray when calling the query function
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `U` | `U` |
+| `K` | extends `boolean```true`` |
+
+___
+
+### FromProps
+
+Ƭ **FromProps**<`K`, `T`\>: { [R in keyof T as \`from${Capitalize<R & string\>}\`]: Function }
+
+Utility type to rename props
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | `K` |
+| `T` | extends `Record`<`string`, `unknown`[]\> |
+
+___
+
 ### QueryCompiler
 
-Ƭ **QueryCompiler**<`Result`, `Params`, `From`, `To`, `Compiled`\>: `BaseQuery`<`Result`, `Params`, `From`, `To`\> & { `compile`: (`params`: `Params`) => `Compiled`  }
+Ƭ **QueryCompiler**<`Result`, `Params`, `From`, `To`, `Compiled`\>: [`BaseQuery`](modules.md#basequery)<`Result`, `Params`, `From`, `To`\> & { `compile`: (`params`: `Params`) => `Compiled`  }
 
 Return type of the query/extend functions
 
@@ -56,7 +108,7 @@ ___
 
 ### QueryParameters
 
-Ƭ **QueryParameters**<`T`\>: `T` extends [`QueryCompiler`](modules.md#querycompiler)<`unknown`, infer R\> ? `R` : `T` extends `BaseQuery`<`unknown`, infer S\> ? `S` : `never`
+Ƭ **QueryParameters**<`T`\>: `T` extends [`QueryCompiler`](modules.md#querycompiler)<`unknown`, infer R\> ? `R` : `T` extends [`BaseQuery`](modules.md#basequery)<`unknown`, infer S\> ? `S` : `never`
 
 Utility type for getting a query's parameters
 
@@ -70,7 +122,7 @@ ___
 
 ### QueryResult
 
-Ƭ **QueryResult**<`T`\>: `T` extends [`QueryCompiler`](modules.md#querycompiler)<infer K, `unknown`\> ? `K` : `T` extends `BaseQuery`<infer R, `unknown`\> ? `R` : `unknown`
+Ƭ **QueryResult**<`T`\>: `T` extends [`QueryCompiler`](modules.md#querycompiler)<infer K, `unknown`\> ? `K` : `T` extends [`BaseQuery`](modules.md#basequery)<infer R, `unknown`\> ? `R` : `unknown`
 
 Utility type for getting a query's result row type
 
@@ -79,6 +131,21 @@ Utility type for getting a query's result row type
 | Name |
 | :------ |
 | `T` |
+
+___
+
+### ToProps
+
+Ƭ **ToProps**<`K`, `T`\>: { [E in keyof T as \`to${Capitalize<E & string\>}\`]: Function }
+
+Utility type to rename props
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `K` | `K` |
+| `T` | extends `Record`<`string`, `unknown`\> |
 
 ___
 
@@ -131,7 +198,7 @@ OR id IN (${(agg) => agg.values('ids')}); -- Same as above
 | Name | Type |
 | :------ | :------ |
 | `template` | `TemplateStringsArray` |
-| `...args` | `BuilderInput`<`T`, `K`, ``false``\>[] |
+| `...args` | [`BuilderInput`](modules.md#builderinput)<`T`, `K`, ``false``\>[] |
 
 #### Returns
 
@@ -174,8 +241,8 @@ const publicUser = findB.toPublic(rows[0]); // publicUser.happy === true
 | :------ | :------ |
 | `input` | [`QueryCompiler`](modules.md#querycompiler)<`K`, `L`, `M`, `N`, `Compiled`\> |
 | `change` | `Object` |
-| `change.from?` | { [R in string \| number \| symbol]: function} |
-| `change.to?` | { [R in string \| number \| symbol]: function} |
+| `change.from?` | { [R in string \| number \| symbol]: Function } |
+| `change.to?` | { [R in string \| number \| symbol]: Function } |
 
 #### Returns
 
@@ -260,7 +327,7 @@ OR id IN (${(agg) => agg.values('ids')}); -- Same as above
 | Name | Type |
 | :------ | :------ |
 | `template` | `TemplateStringsArray` |
-| `...args` | `BuilderInput`<`T`, `K`, ``true``\>[] |
+| `...args` | [`BuilderInput`](modules.md#builderinput)<`T`, `K`, ``true``\>[] |
 
 #### Returns
 
