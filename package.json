@@ -31,7 +31,7 @@
     "coverage": "jest --coverage",
     "deduplicate": "yarn-deduplicate -s fewer",
     "docs": "yarn typedoc --disableSources index.ts",
-    "lint": "eslint --ext .ts . --cache",
+    "lint": "eslint . --cache",
     "prepare": "husky install",
     "prerelease": "yarn build",
     "release": "changeset publish",
@@ -66,6 +66,7 @@
   "author": "Altnext Gorillaz",
   "license": "MIT",
   "eslintIgnore": [
+    "coverage",
     "dist",
     "node_modules"
   ],
