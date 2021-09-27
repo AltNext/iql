@@ -1,5 +1,27 @@
 # iql
 
+## 0.3.1
+
+### Patch Changes
+
+- [#94](https://github.com/AltNext/iql/pull/94) [`f9578bd`](https://github.com/AltNext/iql/commit/f9578bd1d5fcdbbab64f89679203b820fb3ee617) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-config-altnext to v2
+
+- [#86](https://github.com/AltNext/iql/pull/86) [`6e42777`](https://github.com/AltNext/iql/commit/6e42777bc3d5a07a20b198245e6e5e9174a07c16) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typedoc to v0.22.4
+
+- [#91](https://github.com/AltNext/iql/pull/91) [`7686963`](https://github.com/AltNext/iql/commit/7686963242d7307fd6813fa00d43f2702578d3d1) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-config-altnext to v1.2.6
+
+- [#86](https://github.com/AltNext/iql/pull/86) [`6e42777`](https://github.com/AltNext/iql/commit/6e42777bc3d5a07a20b198245e6e5e9174a07c16) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typedoc-plugin-markdown to v3.11.0
+
+- [#87](https://github.com/AltNext/iql/pull/87) [`76f40d1`](https://github.com/AltNext/iql/commit/76f40d1ff193656862f6f7eaeb7ded8d06228793) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency jest to v27.2.1
+
+- [#88](https://github.com/AltNext/iql/pull/88) [`15689b4`](https://github.com/AltNext/iql/commit/15689b4086a86be47039d3e5311ac558d5a6b421) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @types/jest to v27.0.2
+
+- [#93](https://github.com/AltNext/iql/pull/93) [`ba985d9`](https://github.com/AltNext/iql/commit/ba985d976454b9789ef57e97390e2b1d476d8ef4) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency jest to v27.2.2
+
+- [#89](https://github.com/AltNext/iql/pull/89) [`74d0c05`](https://github.com/AltNext/iql/commit/74d0c0537804c7c69def277498bd3614b48c3cc6) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency jest-junit to v12.3.0
+
+- [#92](https://github.com/AltNext/iql/pull/92) [`d85a4a9`](https://github.com/AltNext/iql/commit/d85a4a9c2d16fd43600fde67710549259fc4eb33) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typedoc-plugin-markdown to v3.11.2
+
 ## 0.3.0
 
 ### Minor Changes
