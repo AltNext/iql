@@ -1,4 +1,4 @@
 module.exports = {
-  extends: ['altnext/type-checking'],
+  extends: ['altnext'],
   parserOptions: { tsconfigRootDir: __dirname, project: ['./tsconfig.eslint.json'] },
 };

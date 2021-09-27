@@ -2278,10 +2278,10 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-altnext@1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/eslint-config-altnext/-/eslint-config-altnext-1.2.6.tgz#b9dee7d4c59286699937f17b6035fc0f8fb55bae"
-  integrity sha512-ud/Ya6QbBLFdWl/9qd84g+Pw535zPbH7hBwgpF/5739EchW+Z66UYiMccYWJZTBiLOBK6+waBPL/OsSmcjt6Vg==
+eslint-config-altnext@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-altnext/-/eslint-config-altnext-2.0.0.tgz#b76c9239ddf70e687a14b7d4fc2d9284a1fa212c"
+  integrity sha512-KyJ9l8RAtU9Vn0cfaBnjXclQyz4uIMBzr+Qt5ZPYkayYE+0TRciKBkn6swt5LIGE/USQZWnY3NoDGcDG04TZqg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "4.31.2"
     "@typescript-eslint/parser" "4.31.2"

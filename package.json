@@ -31,7 +31,7 @@
     "coverage": "jest --coverage",
     "deduplicate": "yarn-deduplicate -s fewer",
     "docs": "yarn typedoc --disableSources index.ts",
-    "lint": "eslint --ext .ts . --cache",
+    "lint": "eslint . --cache",
     "prepare": "husky install",
     "prerelease": "yarn build",
     "release": "changeset publish",
@@ -50,7 +50,7 @@
     "@types/jest": "27.0.2",
     "@types/pg": "8.6.1",
     "@jest/types": "27.1.1",
-    "eslint-config-altnext": "1.2.6",
+    "eslint-config-altnext": "2.0.0",
     "husky": "7.0.2",
     "jest": "27.2.2",
     "jest-junit": "12.3.0",
@@ -66,6 +66,7 @@
   "author": "Altnext Gorillaz",
   "license": "MIT",
   "eslintIgnore": [
+    "coverage",
     "dist",
     "node_modules"
   ],
