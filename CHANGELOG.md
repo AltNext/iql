@@ -138,7 +138,7 @@ Version 0.2.1 was not published to NPM, due to a misconfiguration. This version 
 
 - [#19](https://github.com/AltNext/iql/pull/19) [`a214b2d`](https://github.com/AltNext/iql/commit/a214b2d2cbcfbcaedc7874db412bd9682199bbf6) Thanks [@roikoren755](https://github.com/roikoren755)! - test: 100% coverage
 
-* [#19](https://github.com/AltNext/iql/pull/19) [`a214b2d`](https://github.com/AltNext/iql/commit/a214b2d2cbcfbcaedc7874db412bd9682199bbf6) Thanks [@roikoren755](https://github.com/roikoren755)! - doc: add typedocs
+* [#19](https://github.com/AltNext/iql/pull/19) [`a214b2d`](https://github.com/AltNext/iql/commit/a214b2d2cbcfbcaedc7874db412bd9682199bbf6) Thanks [@roikoren755](https://github.com/roikoren755)! - doc: add typedoc
 
 ## 0.1.0
 
