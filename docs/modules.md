@@ -220,7 +220,7 @@ const findB = extend(findA, {
 });
 
 const params = findB.fromRegister('iql'); // row is of type IUserParams
-const { rows } = await pg.query<QueryResylt<typeof findB>>(findB.compile(params));
+const { rows } = await pg.query<QueryResult<typeof findB>>(findB.compile(params));
 const publicUser = findB.toPublic(rows[0]); // publicUser.happy === true
 
 #### Type parameters
