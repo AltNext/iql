@@ -35,6 +35,10 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Deduplicate yarn.lock
         run: yarn deduplicate --list --fail
+      - name: CSpell
+        uses: streetsidesoftware/cspell-action@v1.3.2
+        with:
+          strict: false
       - name: Lint
         run: yarn lint
       - name: Type
