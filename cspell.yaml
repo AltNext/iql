@@ -1,5 +1,7 @@
 version: '0.2'
 language: en
+ignorePaths:
+  - docs/**
 words:
   - altnext
   - changesets
@@ -13,6 +15,8 @@ words:
   - huskyrc
   - lcov
   - necolas
+  - plusplus
+  - postgres
   - prettierrc
   - roikoren
   - snyk

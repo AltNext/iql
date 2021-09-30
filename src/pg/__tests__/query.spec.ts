@@ -7,7 +7,7 @@ describe('pg', () => {
         WHERE id = $1::TEXT
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const q = findMe.compile([id]);
 
@@ -27,7 +27,7 @@ describe('pg', () => {
         WHERE id = ${'id'}::TEXT
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const q = findMe.compile({ id });
 
@@ -42,7 +42,7 @@ describe('pg', () => {
   });
 
   it('should add .value to parameters', () => {
-    const id = 'asdasda';
+    const id = 'someRandomId';
     const findMe = pg<{ id: string }>`
       SELECT * FROM public.foo
         WHERE id = ${(agg) => agg.value(id)}::TEXT
@@ -67,7 +67,7 @@ describe('pg', () => {
         OR id = ${'id'}::TEXT
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const q = findMe.compile({ id });
 
@@ -88,7 +88,7 @@ describe('pg', () => {
         WHERE id = ${'id'}::TEXT
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const queries = Array.from({ length: 5 }, () => findMe.compile({ id }));
 

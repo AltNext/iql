@@ -10,7 +10,7 @@ describe('bq', () => {
         WHERE id = @param_0
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const q = findMe.compile([id]);
 
@@ -29,7 +29,7 @@ describe('bq', () => {
         WHERE id = ${'id'}
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const q = findMe.compile({ id });
 
@@ -43,7 +43,7 @@ describe('bq', () => {
   });
 
   it('should add .value to parameters', () => {
-    const id = 'asdasda';
+    const id = 'someRandomId';
     const findMe = bq<{ id: string }>`
       SELECT * FROM \`public.foo\`
         WHERE id = ${(agg) => agg.value(id)}
@@ -67,7 +67,7 @@ describe('bq', () => {
         OR id = ${'id'}
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const q = findMe.compile({ id });
 
@@ -87,7 +87,7 @@ describe('bq', () => {
         WHERE id = ${'id'}
     `;
 
-    const id = 'asdasda';
+    const id = 'someRandomId';
 
     const queries = Array.from({ length: 5 }, () => findMe.compile({ id }));
 
@@ -232,7 +232,7 @@ describe('bq', () => {
     `;
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const param_0 = 'asdasda';
+    const param_0 = 'someRandomId';
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const q = findMe.compile({ param_0 });
@@ -255,7 +255,7 @@ describe('bq', () => {
     `;
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const param_0 = 'asdasda';
+    const param_0 = 'someRandomId';
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const q = findMe.compile({ param_0 });
