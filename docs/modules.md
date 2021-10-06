@@ -36,7 +36,7 @@
 
 ### query
 
-• **query**: `Object`
+Renames and re-exports [pg](modules.md#pg)
 
 ## Type aliases
 
