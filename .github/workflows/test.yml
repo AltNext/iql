@@ -36,7 +36,7 @@ jobs:
       - name: Deduplicate yarn.lock
         run: yarn deduplicate --list --fail
       - name: CSpell
-        uses: streetsidesoftware/cspell-action@v1.3.3
+        uses: streetsidesoftware/cspell-action@v1.3.4
       - name: Lint
         run: yarn lint
       - name: Type
