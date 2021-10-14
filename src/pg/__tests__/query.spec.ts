@@ -195,8 +195,8 @@ describe('pg', () => {
 
   it('should work with no helpers with extend', () => {
     const findMe = pg<{ id: string }, string[]>`
-        SELECT id FROM public.foo
-        WHERE id in (${(agg, values) => agg.values(values)})
+      SELECT id FROM public.foo
+      WHERE id in (${(agg, values) => agg.values(values)})
     `;
 
     const findMeExtended = extend(findMe, {});
@@ -237,10 +237,6 @@ describe('pg', () => {
   it('should not fail for empty query', () => {
     const findMe = pg``;
 
-    expect(findMe.compile()).toStrictEqual({
-      name: expect.stringContaining(''),
-      text: '',
-      values: [],
-    });
+    expect(findMe.compile()).toStrictEqual({ name: expect.stringContaining(''), text: '', values: [] });
   });
 });

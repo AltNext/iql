@@ -189,8 +189,8 @@ describe('bq', () => {
 
   it('should work with no helpers with extend', () => {
     const findMe = bq<{ id: string }, string[]>`
-        SELECT id FROM \`public.foo\`
-        WHERE id in (${(agg, values) => agg.values(values)})
+      SELECT id FROM \`public.foo\`
+      WHERE id in (${(agg, values) => agg.values(values)})
     `;
 
     const findMeExtended = extend(findMe, {});
@@ -218,10 +218,7 @@ describe('bq', () => {
   it('should not fail for empty query', () => {
     const findMe = bq``;
 
-    expect(findMe.compile()).toStrictEqual({
-      query: '',
-      params: {},
-    });
+    expect(findMe.compile()).toStrictEqual({ query: '', params: {} });
   });
 
   it('should work with compileValue named `param_N`', () => {
@@ -276,7 +273,7 @@ describe('bq', () => {
     const param_0 = 'test';
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const param_1 = 't';
-    const findMe = bq<{}, [string]>`
+    const findMe = bq<undefined, [string]>`
       SELECT * FROM \`public.foo\`
         WHERE id = ${(agg) => agg.value(param_1)}
         OR id = ${0};
