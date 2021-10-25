@@ -1,5 +1,65 @@
 # iql
 
+## 0.3.2
+
+### Patch Changes
+
+- [#105](https://github.com/AltNext/iql/pull/105) [`512a63d`](https://github.com/AltNext/iql/commit/512a63d2e30f2d29f16102d325fd5e87fd3ea041) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typedoc-plugin-markdown to v3.11.3
+
+- [#105](https://github.com/AltNext/iql/pull/105) [`512a63d`](https://github.com/AltNext/iql/commit/512a63d2e30f2d29f16102d325fd5e87fd3ea041) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): bump mixme from 0.5.1 to 0.5.4
+
+- [#118](https://github.com/AltNext/iql/pull/118) [`b6cf190`](https://github.com/AltNext/iql/commit/b6cf1908cc47b91575a598a3add19074e310db8c) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ts-jest to v27.0.7
+
+- [#111](https://github.com/AltNext/iql/pull/111) [`9d46c2d`](https://github.com/AltNext/iql/commit/9d46c2d7d4659fbe6e84a3bed2b4e60984929898) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency cspell to v5.12.3
+
+- [#114](https://github.com/AltNext/iql/pull/114) [`6c96371`](https://github.com/AltNext/iql/commit/6c96371d23dc301008286206c73090811d052b35) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @commitlint/cli to v13.2.1
+
+- [#96](https://github.com/AltNext/iql/pull/96) [`48bab9e`](https://github.com/AltNext/iql/commit/48bab9e4d6c6db58a1aeef652beccb2a82dac9e1) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update jest monorepo to v27.2.4
+
+- [#100](https://github.com/AltNext/iql/pull/100) [`1b6f118`](https://github.com/AltNext/iql/commit/1b6f1185795a34cc0e400ed3140eebb254286b85) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-config-altnext to v2.0.1
+
+- [#95](https://github.com/AltNext/iql/pull/95) [`b07bdb7`](https://github.com/AltNext/iql/commit/b07bdb7ed9fc9fe633483ff1bc20eb5ec6281df7) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update commitlint monorepo to v13.2.0
+
+- [#110](https://github.com/AltNext/iql/pull/110) [`5b5ad7f`](https://github.com/AltNext/iql/commit/5b5ad7f9e576e7b3e77690596650967f1284c289) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typescript to v4.4.4
+
+- [#105](https://github.com/AltNext/iql/pull/105) [`512a63d`](https://github.com/AltNext/iql/commit/512a63d2e30f2d29f16102d325fd5e87fd3ea041) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency jest-junit to v13
+
+- [#105](https://github.com/AltNext/iql/pull/105) [`512a63d`](https://github.com/AltNext/iql/commit/512a63d2e30f2d29f16102d325fd5e87fd3ea041) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): bump tmpl from 1.0.4 to 1.0.5
+
+- [#119](https://github.com/AltNext/iql/pull/119) [`ce0885a`](https://github.com/AltNext/iql/commit/ce0885aa3bac8da5e1a020a1e839124e9a159a99) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typedoc to v0.22.6
+
+- [#116](https://github.com/AltNext/iql/pull/116) [`c74b5fc`](https://github.com/AltNext/iql/commit/c74b5fc7a6bec3e68fd66347e43bc16bbb125dd7) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @google-cloud/bigquery to v5.9.1
+
+- [#110](https://github.com/AltNext/iql/pull/110) [`5b5ad7f`](https://github.com/AltNext/iql/commit/5b5ad7f9e576e7b3e77690596650967f1284c289) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency eslint-config-altnext to v2.2.0
+
+- [#112](https://github.com/AltNext/iql/pull/112) [`e425e2b`](https://github.com/AltNext/iql/commit/e425e2bb61ba3a45ac1c63aedcd53eb006f9cd18) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update jest monorepo to v27.2.5
+
+- [#102](https://github.com/AltNext/iql/pull/102) [`f4e2e11`](https://github.com/AltNext/iql/commit/f4e2e11be9121bca0db6837fe6b2a8d2b69941d8) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency lint-staged to v11.2.0
+
+- [#105](https://github.com/AltNext/iql/pull/105) [`512a63d`](https://github.com/AltNext/iql/commit/512a63d2e30f2d29f16102d325fd5e87fd3ea041) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency cspell to v5.12.1
+
+- [#122](https://github.com/AltNext/iql/pull/122) [`3133738`](https://github.com/AltNext/iql/commit/31337387d772e93a50babba50f840e7557f51686) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency lint-staged to v11.2.4
+
+- [#115](https://github.com/AltNext/iql/pull/115) [`18e1d31`](https://github.com/AltNext/iql/commit/18e1d3184965de7486f4c3e79033ae57f4c2cdd7) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ts-node to v10.3.0
+
+- [#113](https://github.com/AltNext/iql/pull/113) [`dedb2fa`](https://github.com/AltNext/iql/commit/dedb2fa4fcddb9ced33ca56bca91a240af10a880) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency lint-staged to v11.2.3
+
+- [#122](https://github.com/AltNext/iql/pull/122) [`3133738`](https://github.com/AltNext/iql/commit/31337387d772e93a50babba50f840e7557f51686) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency husky to v7.0.4
+
+- [#121](https://github.com/AltNext/iql/pull/121) [`58ea852`](https://github.com/AltNext/iql/commit/58ea8525189810cad916995481933aafa311f9b3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency jest to v27.3.1
+
+- [#105](https://github.com/AltNext/iql/pull/105) [`512a63d`](https://github.com/AltNext/iql/commit/512a63d2e30f2d29f16102d325fd5e87fd3ea041) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update streetsidesoftware/cspell-action action to v1.3.3
+
+- [#98](https://github.com/AltNext/iql/pull/98) [`d621266`](https://github.com/AltNext/iql/commit/d62126692c270044d43e29cf2e91226ffaab1c1c) Thanks [@roikoren755](https://github.com/roikoren755)! - chore: add cspell
+
+- [#120](https://github.com/AltNext/iql/pull/120) [`1592104`](https://github.com/AltNext/iql/commit/1592104be2ee6cabb0dd75c399465945843d1b2b) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency jest to v27.3.0
+
+- [#105](https://github.com/AltNext/iql/pull/105) [`512a63d`](https://github.com/AltNext/iql/commit/512a63d2e30f2d29f16102d325fd5e87fd3ea041) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typedoc to v0.22.5
+
+- [#122](https://github.com/AltNext/iql/pull/122) [`3133738`](https://github.com/AltNext/iql/commit/31337387d772e93a50babba50f840e7557f51686) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency typedoc to v0.22.7
+
+- [#122](https://github.com/AltNext/iql/pull/122) [`3133738`](https://github.com/AltNext/iql/commit/31337387d772e93a50babba50f840e7557f51686) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency ts-node to v10.4.0
+
 ## 0.3.1
 
 ### Patch Changes
