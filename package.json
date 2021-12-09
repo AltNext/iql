@@ -51,7 +51,7 @@
     "@types/jest": "27.0.2",
     "@types/pg": "8.6.1",
     "cspell": "5.12.3",
-    "eslint-config-altnext": "2.2.0",
+    "eslint-config-altnext": "2.2.2",
     "husky": "7.0.4",
     "jest": "27.3.1",
     "jest-junit": "13.0.0",
