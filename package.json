@@ -50,7 +50,7 @@
     "@jest/types": "27.2.5",
     "@types/jest": "27.0.2",
     "@types/pg": "8.6.1",
-    "cspell": "5.12.3",
+    "cspell": "5.21.2",
     "eslint-config-altnext": "2.2.0",
     "husky": "7.0.4",
     "jest": "27.3.1",
